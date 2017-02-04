@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{BD52BB86-0B57-4E06-9B0B-1B7829B1B597}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="VCL\Standalone\VclStandalone.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="VCL\Classic\VclApplication.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="VCL\Classic\VclUpdate.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FMX\FmxApplication.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="VclStandalone">
+        <MSBuild Projects="VCL\Standalone\VclStandalone.dproj"/>
+    </Target>
+    <Target Name="VclStandalone:Clean">
+        <MSBuild Projects="VCL\Standalone\VclStandalone.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VclStandalone:Make">
+        <MSBuild Projects="VCL\Standalone\VclStandalone.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VclApplication">
+        <MSBuild Projects="VCL\Classic\VclApplication.dproj"/>
+    </Target>
+    <Target Name="VclApplication:Clean">
+        <MSBuild Projects="VCL\Classic\VclApplication.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VclApplication:Make">
+        <MSBuild Projects="VCL\Classic\VclApplication.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VclUpdate">
+        <MSBuild Projects="VCL\Classic\VclUpdate.dproj"/>
+    </Target>
+    <Target Name="VclUpdate:Clean">
+        <MSBuild Projects="VCL\Classic\VclUpdate.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VclUpdate:Make">
+        <MSBuild Projects="VCL\Classic\VclUpdate.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FmxApplication">
+        <MSBuild Projects="FMX\FmxApplication.dproj"/>
+    </Target>
+    <Target Name="FmxApplication:Clean">
+        <MSBuild Projects="FMX\FmxApplication.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FmxApplication:Make">
+        <MSBuild Projects="FMX\FmxApplication.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="VclStandalone;VclApplication;VclUpdate;FmxApplication"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="VclStandalone:Clean;VclApplication:Clean;VclUpdate:Clean;FmxApplication:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="VclStandalone:Make;VclApplication:Make;VclUpdate:Make;FmxApplication:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

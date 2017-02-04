@@ -12,18 +12,6 @@
         <Projects Include="TurboUpdateFMX.dproj">
             <Dependencies>TurboUpdate.dproj</Dependencies>
         </Projects>
-        <Projects Include="Samples\Project.dproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="Samples\ProjectFmx.dproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="Samples\ProjectUpdate.dproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="Samples\VCL\Classic\ClassicVcl.dproj">
-            <Dependencies/>
-        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -59,50 +47,14 @@
     <Target Name="TurboUpdateFMX:Make" DependsOnTargets="TurboUpdate:Make">
         <MSBuild Projects="TurboUpdateFMX.dproj" Targets="Make"/>
     </Target>
-    <Target Name="Project">
-        <MSBuild Projects="Samples\Project.dproj"/>
-    </Target>
-    <Target Name="Project:Clean">
-        <MSBuild Projects="Samples\Project.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="Project:Make">
-        <MSBuild Projects="Samples\Project.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="ProjectFmx">
-        <MSBuild Projects="Samples\ProjectFmx.dproj"/>
-    </Target>
-    <Target Name="ProjectFmx:Clean">
-        <MSBuild Projects="Samples\ProjectFmx.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="ProjectFmx:Make">
-        <MSBuild Projects="Samples\ProjectFmx.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="ProjectUpdate">
-        <MSBuild Projects="Samples\ProjectUpdate.dproj"/>
-    </Target>
-    <Target Name="ProjectUpdate:Clean">
-        <MSBuild Projects="Samples\ProjectUpdate.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="ProjectUpdate:Make">
-        <MSBuild Projects="Samples\ProjectUpdate.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="ClassicVcl">
-        <MSBuild Projects="Samples\VCL\Classic\ClassicVcl.dproj"/>
-    </Target>
-    <Target Name="ClassicVcl:Clean">
-        <MSBuild Projects="Samples\VCL\Classic\ClassicVcl.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="ClassicVcl:Make">
-        <MSBuild Projects="Samples\VCL\Classic\ClassicVcl.dproj" Targets="Make"/>
-    </Target>
     <Target Name="Build">
-        <CallTarget Targets="TurboUpdate;TurboUpdateVCL;TurboUpdateFMX;Project;ProjectFmx;ProjectUpdate;ClassicVcl"/>
+        <CallTarget Targets="TurboUpdate;TurboUpdateVCL;TurboUpdateFMX"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="TurboUpdate:Clean;TurboUpdateVCL:Clean;TurboUpdateFMX:Clean;Project:Clean;ProjectFmx:Clean;ProjectUpdate:Clean;ClassicVcl:Clean"/>
+        <CallTarget Targets="TurboUpdate:Clean;TurboUpdateVCL:Clean;TurboUpdateFMX:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="TurboUpdate:Make;TurboUpdateVCL:Make;TurboUpdateFMX:Make;Project:Make;ProjectFmx:Make;ProjectUpdate:Make;ClassicVcl:Make"/>
+        <CallTarget Targets="TurboUpdate:Make;TurboUpdateVCL:Make;TurboUpdateFMX:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

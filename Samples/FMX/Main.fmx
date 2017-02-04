@@ -1,0 +1,51 @@
+object FormMain: TFormMain
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = Single
+  Caption = 'test stanalone (see vcl samples for classic)'
+  ClientHeight = 113
+  ClientWidth = 489
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object ButtonCheckUpdateOld: TButton
+    Position.X = 8.000000000000000000
+    Position.Y = 45.000000000000000000
+    Size.Width = 153.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'Check Update (1.9.3.0)'
+    OnClick = ButtonCheckUpdateOldClick
+  end
+  object ButtonCheckUpdateNew: TButton
+    Position.X = 168.000000000000000000
+    Position.Y = 45.000000000000000000
+    Size.Width = 153.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'Check Update (2.0.0.0)'
+    OnClick = ButtonCheckUpdateNewClick
+  end
+  object ButtonCheckUpdateCur: TButton
+    Position.X = 328.000000000000000000
+    Position.Y = 45.000000000000000000
+    Size.Width = 153.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Text = 'Check Update (for this exe)'
+    OnClick = ButtonCheckUpdateCurClick
+  end
+  object Label1: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 88.000000000000000000
+    Size.Width = 193.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'On GitHub - version 2.0.0.0'
+  end
+end

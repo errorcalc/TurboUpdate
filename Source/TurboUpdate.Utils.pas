@@ -19,17 +19,17 @@ begin
   if IsRelativePath(FileName) then
     FileName := ExtractFilePath(ParamStr(0)) + PathDelim + FileName;
 
-  ZeroMemory(Info, SizeOf(Info));
+  ZeroMemory(@Info, SizeOf(Info));
   Info.cbSize := SizeOf(Info);
   Info.Wnd := 0;
   if RunAsAdministrator then
     Info.lpVerb := 'runas';
-  Info.lpFile := FileName;
+  Info.lpFile := PChar(FileName);
   Info.lpParameters := '';
-  Info.lpDirectory := ExtractFilePath(FileName);
+  Info.lpDirectory := PChar(ExtractFilePath(FileName));
   Info.nShow := SW_NORMAL;
 
-  ShellExecuteEx(Info);
+  ShellExecuteEx(@Info);
 end;
 
 end.

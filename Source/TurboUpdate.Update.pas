@@ -20,7 +20,6 @@ uses
   TurboUpdate.Types, System.Classes, System.SysUtils, Vcl.Forms, TurboUpdate.Model;
 
 procedure Update(const UpdateInfo: TUpdateInfo);
-procedure UpdateApp(const FileName: TFileName = 'Update.exe'; const ByAdmin: Boolean);
 procedure UpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
 
 type

@@ -32,7 +32,7 @@ function DowloadFile(Url: string; Path: string; DownloadProgress: TReceiveDataEv
 implementation
 
 uses
-  System.Net.HttpClient, System.IniFiles, System.Classes, System.SysUtils, Vcl.Dialogs;
+  System.Net.HttpClient, System.IniFiles, System.Classes, System.SysUtils;
 
 function GetStream(Url: string): TStream;
 var

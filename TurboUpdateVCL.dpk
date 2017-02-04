@@ -29,10 +29,16 @@ package TurboUpdateVCL;
 {$IMPLICITBUILD ON}
 
 requires
-  rtl;
+  rtl,
+  vcl,
+  vclimg,
+  TurboUpdate,
+  EsVclComponents,
+  EsVclCore;
 
 contains
   TurboUpdate.FormUpdate in 'Source\TurboUpdate.FormUpdate.pas',
   TurboUpdate.Update in 'Source\TurboUpdate.Update.pas';
 
 end.
+

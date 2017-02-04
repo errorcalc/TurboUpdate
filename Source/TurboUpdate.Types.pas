@@ -24,7 +24,7 @@ uses
 type
   TUpdateState = (Waiting, Downloading, Unpacking, Done);
 
-  TStringArray = TArray<string>;
+  TStringArray = array of string;
 
   IUpdateModel = interface
   ['{CEAD1A55-AF8B-4003-B1C2-84D7371D2CE1}']

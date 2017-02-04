@@ -29,10 +29,13 @@ package TurboUpdateFMX;
 {$IMPLICITBUILD ON}
 
 requires
-  rtl;
+  rtl,
+  fmx,
+  TurboUpdate;
 
 contains
   TurboUpdate.UpdateFmx in 'Source\TurboUpdate.UpdateFmx.pas',
   TurboUpdate.FormUpdateFmx in 'Source\TurboUpdate.FormUpdateFmx.pas';
 
 end.
+
