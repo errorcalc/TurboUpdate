@@ -1,2 +1,4 @@
 # TurboUpdate
---- Not completed yet ---
+
+
+Alpha version, see samples.
