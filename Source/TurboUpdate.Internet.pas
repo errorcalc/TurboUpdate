@@ -17,7 +17,7 @@ unit TurboUpdate.Internet;
 interface
 
 uses
-  TurboUpdate.Types;
+  System.Net.UrlClient, TurboUpdate.Types;
 
 function GetUpdateUrl(IniFileUrl: string; Name: string): string; overload;
 function GetUpdateVersion(IniFileUrl: string; Name: string; out Version: TFileVersion): Boolean; overload;
@@ -28,6 +28,9 @@ type
   TReceiveDataEventRef = reference to procedure(Length: Int64; Progress: Int64; var Abort: Boolean);
 
 function DowloadFile(Url: string; Path: string; DownloadProgress: TReceiveDataEventRef): Boolean;
+
+var
+  ProxySettings: TProxySettings;
 
 implementation
 
@@ -45,6 +48,7 @@ begin
   try
     Http := THttpClient.Create;
     try
+      Http.ProxySettings := ProxySettings;
       // Http.ConnectTimeout := 10 * 1000;// 10 sec
       if Http.Get(Url, Stream).StatusCode >= 300 then
         FreeAndNil(Stream);
@@ -214,6 +218,8 @@ begin
   Stream := TFileStream.Create(Path, fmCreate);
   try
     Http := THttpClient.Create;
+    Http.ProxySettings := ProxySettings;
+
     Http.OnReceiveData := Hook.ResiveDataProc;
     try
       //Http.DownloadProgressProc := DownloadProgress;
