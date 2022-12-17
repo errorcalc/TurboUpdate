@@ -10,14 +10,14 @@
 {             Open this on github: github.com/errorcalc/TurboUpdate            }
 {                                                                              }
 { You can order developing vcl/fmx components, please submit requests to mail. }
-{ Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
+{ Г‚Г» Г¬Г®Г¦ГҐГІГҐ Г§Г ГЄГ Г§Г ГІГј Г°Г Г§Г°Г ГЎГ®ГІГЄГі VCL/FMX ГЄГ®Г¬ГЇГ®Г­ГҐГ­ГІГ  Г­Г  Г§Г ГЄГ Г§.                   }
 {******************************************************************************}
 unit TurboUpdate.Model;
 
 interface
 
 uses
-  TurboUpdate.Types, System.Classes;
+  TurboUpdate.Types, TurboUpdate.Utils, System.Classes;
 
 type
   TUpdater = class(TInterfacedPersistent, IUpdateModel)
@@ -175,6 +175,7 @@ begin
     View.State := TUpdateState.Done;
     View.Status := sDoneStatus;
     View.ShowMessage(sDoneMessage);
+    TurboUpdate.Utils.LaunchUpdateApp( ExeNames[0] , true); //open new update by application or app in inno setup //add by Francisco Aurino in 17/12/2022 16:25:43
   end);
 end;
 
