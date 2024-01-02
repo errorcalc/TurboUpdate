@@ -13,28 +13,67 @@
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
 unit TurboUpdate.Consts;
+{$I \Language.inc}
 
 interface
 
-var
-  // status
-  sWaitingStatus: string = 'Waiting...';
-  sDownloadingStatus: string = 'Downloading...';
-  sRenamingFilesStatus: string  = 'Renaming Files...';
-  sUnpackingStatus: string  = 'Unpacking...';
-  sDoneStatus: string  = 'Done!';
+uses
+  Data.DB,
 
-  // errors
-  sConnectionError: string = 'Connection Error, Please Check Your Internet Connection, Try Again?';
-  sDownloadError: string = 'Download Error, Try Again?';
-  sCorruptedFilesError: string = 'Corrupted Files, Try Again?';
+  System.Classes,
+  System.SysUtils,
 
-  // messages
-  sDoneMessage: string = 'Successful!, Please Restart Application';
+  TurboUpdate.LanguagePTbr,
+  TurboUpdate.LanguageUS,
+  TurboUpdate.Types;
 
-  // other
-  sVersion: string = 'Ver. %s';
+type
+  TFactoryConsts = class (TInterfacedObject, IFactoryConsts)
+    private
+    {$IFDEF EN-Us}
+      FLanguageUS : IMessageConsts;
+    {$ENDIF}
+    {$IFDEF PT-Br}
+      FLanguadePTbr : IMessageConsts;
+    {$ENDIF}
+    public
+      constructor Create;
+      destructor Destroy; override;
+      class function New : IFactoryConsts;
+      function Consts : IMessageConsts;
+  end;
 
 implementation
+
+{ TFactoryConsts }
+
+function TFactoryConsts.Consts: IMessageConsts;
+begin
+{$IFDEF EN-Us}
+  FLanguageUS := TMessageConstsUS.New;
+  Result := FLanguageUS;
+{$ENDIF}
+
+{$IFDEF PT-Br}
+  FLanguadePTbr := TMessageConstsPTbr.New;
+  Result := FLanguadePTbr;
+{$ENDIF}
+end;
+
+constructor TFactoryConsts.Create;
+begin
+
+end;
+
+destructor TFactoryConsts.Destroy;
+begin
+
+  inherited;
+end;
+
+class function TFactoryConsts.New: IFactoryConsts;
+begin
+  Result := Self.Create;
+end;
 
 end.

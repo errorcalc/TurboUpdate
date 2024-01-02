@@ -25,7 +25,23 @@ type
   TUpdateState = (Waiting, Downloading, Unpacking, Done);
 
   TStringArray = array of string;
-
+    IMessageConsts = interface //Adicionado por Renato Trevisan 02/01/24
+    ['{CCEA3692-C90A-48DA-801E-0543F49C6CBC}']
+    function WaitingStatus : string;
+    function DownloadingStatus : string;
+    function RenamingFilesStatus : string;
+    function UnpackingStatus : string;
+    function DoneStatus : string;
+    function ConnectionError : string;
+    function DownloadError : string;
+    function CorruptedFilesError : string;
+    function DoneMessage : string;
+    function Version : string;
+  end;
+  IFactoryConsts = interface //Adicionado por Renato Trevisan 02/01/24
+    ['{3DC0100B-59AB-4D25-B9F4-BA1E3945E664}']
+    function Consts : IMessageConsts;
+  end;
   IUpdateModel = interface
   ['{CEAD1A55-AF8B-4003-B1C2-84D7371D2CE1}']
     procedure Cancel;

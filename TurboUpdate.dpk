@@ -1,5 +1,4 @@
 package TurboUpdate;
-
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
@@ -29,7 +28,8 @@ package TurboUpdate;
 {$IMPLICITBUILD ON}
 
 requires
-  rtl;
+  rtl,
+  dbrtl;
 
 contains
   TurboUpdate.Consts in 'Source\TurboUpdate.Consts.pas',
@@ -38,7 +38,8 @@ contains
   TurboUpdate.Model in 'Source\TurboUpdate.Model.pas',
   TurboUpdate.Types in 'Source\TurboUpdate.Types.pas',
   TurboUpdate.Check in 'Source\TurboUpdate.Check.pas',
-  TurboUpdate.Utils in 'Source\TurboUpdate.Utils.pas';
+  TurboUpdate.Utils in 'Source\TurboUpdate.Utils.pas',
+  TurboUpdate.LanguagePTbr in 'Source\TurboUpdate.LanguagePTbr.pas',
+  TurboUpdate.LanguageUS in 'Source\TurboUpdate.LanguageUS.pas';
 
 end.
-

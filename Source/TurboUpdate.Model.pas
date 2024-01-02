@@ -1,4 +1,4 @@
-{******************************************************************************}
+﻿{******************************************************************************}
 {                           ErrorSoft TurboUpdate                              }
 {                          ErrorSoft(c)  2016-2017                             }
 {                                                                              }
@@ -33,6 +33,7 @@ type
     UpdateFile: string;
   protected
     View: IUpdateView;
+    FConsts : IFactoryConsts;
     // Internal routlines
     procedure SyncView(Proc: TThreadProcedure);// perfect
     procedure SyncShowView;// perfect
@@ -123,6 +124,7 @@ end;
 constructor TUpdater.Create(View: IUpdateView; UpdateInfo: TUpdateInfo);
 begin
   // Info
+  FConsts := TFactoryConsts.New;
   Urls := UpdateInfo.Urls;
   Name := UpdateInfo.Name;
   ExeNames := UpdateInfo.ExeNames + [ExtractFileName(ParamStr(0))];
@@ -149,7 +151,7 @@ begin
     // Progress
     View.Progress(0, 1);
     // Status
-    View.Status := sWaitingStatus;
+    View.Status := FConsts.Consts.WaitingStatus;
     // Version
     View.Version := '';
   end);
@@ -173,8 +175,8 @@ begin
   SyncView(procedure
   begin
     View.State := TUpdateState.Done;
-    View.Status := sDoneStatus;
-    View.ShowMessage(sDoneMessage);
+    View.Status := FConsts.Consts.DoneStatus;
+    View.ShowMessage(FConsts.Consts.DoneMessage);
     TurboUpdate.Utils.LaunchUpdateApp( ExeNames[0] , true); //open new update by application or app in inno setup //add by Francisco Aurino in 17/12/2022 16:25:43
   end);
 end;
@@ -185,7 +187,7 @@ begin
   SyncView(procedure
   begin
     View.State := TUpdateState.Downloading;
-    View.Status := sDownloadingStatus;
+    View.Status := FConsts.Consts.DownloadingStatus;
   end);
 
   try
@@ -212,13 +214,13 @@ begin
   SyncView(procedure
   begin
     View.State := TUpdateState.Waiting;
-    View.Status := sWaitingStatus;
+    View.Status := FConsts.Consts.WaitingStatus;
   end);
 
   if GetUpdateVersion(Urls, Name, FileVersion) then
     SyncView(procedure
     begin
-      View.Version := Format(sVersion, [FileVersion.ToString]);
+      View.Version := Format(FConsts.Consts.Version, [FileVersion.ToString]);
     end);
 
   DownloadPath := GetUpdateUrl(Urls, Name);
@@ -306,7 +308,7 @@ begin
   SyncView(procedure
   begin
     View.State := TUpdateState.Unpacking;
-    View.Status := sUnpackingStatus;
+    View.Status := FConsts.Consts.UnpackingStatus;
   end);
 
   ZipFile := TZipFile.Create;
@@ -356,7 +358,7 @@ begin
     if IsAbort then
       Exit(TUpdateResult.Abort)
     else
-      if SyncErrorMessage(sConnectionError) then
+      if SyncErrorMessage(FConsts.Consts.ConnectionError) then
         Exit(TUpdateResult.TryAgain)
       else
         Exit(TUpdateResult.Fail);   
@@ -366,7 +368,7 @@ begin
     if IsAbort then
       Exit(TUpdateResult.Abort)
     else
-      if SyncErrorMessage(sDownloadError) then
+      if SyncErrorMessage(FConsts.Consts.DownloadError) then
         Exit(TUpdateResult.TryAgain)
       else
         Exit(TUpdateResult.Fail);
@@ -375,7 +377,7 @@ begin
 
   // Unpacking
   if not Unpacking then
-    if SyncErrorMessage(sCorruptedFilesError) then
+    if SyncErrorMessage(FConsts.Consts.CorruptedFilesError) then
       Exit(TUpdateResult.TryAgain)
     else
       Exit(TUpdateResult.Fail);
@@ -428,7 +430,7 @@ begin
         begin
           Done;
         end else
-          TryAgain := SyncErrorMessage(sCorruptedFilesError);
+          TryAgain := SyncErrorMessage(FConsts.Consts.CorruptedFilesError);
       until not TryAgain;
     finally
       SyncCloseView;
