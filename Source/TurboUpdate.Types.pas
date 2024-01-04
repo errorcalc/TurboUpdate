@@ -13,17 +13,12 @@
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
 unit TurboUpdate.Types;
-
 {$SCOPEDENUMS ON}
-
 interface
-
 uses
   System.Classes, System.SysUtils;
-
 type
   TUpdateState = (Waiting, Downloading, Unpacking, Done);
-
   TStringArray = array of string;
     IMessageConsts = interface //Adicionado por Renato Trevisan 02/01/24
     ['{CCEA3692-C90A-48DA-801E-0543F49C6CBC}']
@@ -46,7 +41,6 @@ type
   ['{CEAD1A55-AF8B-4003-B1C2-84D7371D2CE1}']
     procedure Cancel;
   end;
-
   IUpdateView = interface
   ['{D7D57022-217A-4D79-944F-6D3112D674D9}']
     procedure SetVersion(const Value: string);
@@ -69,7 +63,6 @@ type
     property Model: IUpdateModel write SetModel;
     property State: TUpdateState write SetUpdateState;
   end;
-
   TFileVersion = record
   public
     Major: Word;
@@ -90,7 +83,6 @@ type
     {$ENDIF}
     function ToString: string;
   end;
-
   TUpdateInfo = record
     // Main
     ExeNames: TStringArray;
@@ -101,18 +93,14 @@ type
     Description: string;
     PngRes: string;
   end;
-
 {$IFDEF MSWINDOWS}
 function GetFileVersion(FileName: string; out Version: TFileVersion): Boolean;
 {$ENDIF}
-
 implementation
-
 {$IFDEF MSWINDOWS}
 uses
   WinApi.Windows;
 {$ENDIF}
-
 {$IFDEF MSWINDOWS}
 function GetFileVersion(FileName: string; out Version: TFileVersion): Boolean;
 var
@@ -143,9 +131,7 @@ begin
   end;
 end;
 {$ENDIF}
-
 { TFileVersion }
-
 constructor TFileVersion.Create(VersionStr: string);
 var
   A: TArray<string>;
@@ -155,7 +141,6 @@ begin
   Release := 0;
   Build := 0;
   A := VersionStr.Split(['.']);
-
   try
     if High(A) >= 0 then
       Major := A[0].Trim.ToInteger;
@@ -169,7 +154,6 @@ begin
     on EConvertError do ;
   end;
 end;
-
 {$IFDEF MSWINDOWS}
 constructor TFileVersion.CreateForFile(FileName: TFileName);
 begin
@@ -177,56 +161,44 @@ begin
   GetFileVersion(FileName, Self);
 end;
 {$ENDIF}
-
 class operator TFileVersion.Equal(L, R: TFileVersion): Boolean;
 begin
   Result := (L.Major = R.Major) and (L.Minor = R.Minor) and (L.Release = R.Release) and (L.Build = R.Build);
 end;
-
 class operator TFileVersion.GreaterThan(L, R: TFileVersion): Boolean;
 begin
   Result := R < L;
 end;
-
 class operator TFileVersion.GreaterThanOrEqual(L, R: TFileVersion): Boolean;
 begin
   Result := R <= L;
 end;
-
 class operator TFileVersion.LessThan(L, R: TFileVersion): Boolean;
 begin
   Result := False;
-
   // Major
   if L.Major > R.Major then Exit(False);
   if L.Major < R.Major then Exit(True);
-
   // Minor
   if L.Minor > R.Minor then Exit(False);
   if L.Minor < R.Minor then Exit(True);
-
   // Release
   if L.Release > R.Release then Exit(False);
   if L.Release < R.Release then Exit(True);
-
   // Build
   if L.Build > R.Build then Exit(False);
   if L.Build < R.Build then Exit(True);
 end;
-
 class operator TFileVersion.LessThanOrEqual(L, R: TFileVersion): Boolean;
 begin
   Result := (L < R) or (L = R);
 end;
-
 class operator TFileVersion.NotEqual(L, R: TFileVersion): Boolean;
 begin
   Result := not (L = R);
 end;
-
 function TFileVersion.ToString: string;
 begin
   Result := Format('%d.%d.%d.%d', [Major, Minor, Release, Build]);
 end;
-
 end.

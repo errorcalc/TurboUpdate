@@ -17,7 +17,14 @@ unit TurboUpdate.UpdateFmx;
 interface
 
 uses
-  TurboUpdate.Types, System.Classes, System.SysUtils, Fmx.Forms, TurboUpdate.Model;
+  Fmx.Forms,
+
+  System.Classes,
+  System.SysUtils,
+
+  TurboUpdate.Model,
+  TurboUpdate.Types,
+  TurboUpdate.Update.Thread;
 
 procedure Update(const UpdateInfo: TUpdateInfo);
 procedure UpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
@@ -45,41 +52,32 @@ begin
 end;
 
 { TFmxUpdateThread }
-
 function TFmxUpdateThread.CreateView: TCustomForm;
 begin
   Result := TFormUpdateFmx.Create(Application);
 end;
-
 procedure TFmxUpdateThread.Work;
 var
   Model: TUpdater;
   View: TCustomForm;
-
 begin
   // need waiting start mainloop
   while ApplicationState = TApplicationState.None do Sleep(0);
-
   Sync(procedure
   begin
     View := CreateView;
   end);
-
   if Application.MainForm = nil then
     Application.MainForm := View;
-
   Model := nil;
   try
     Model := CreateModel(View as IUpdateView);
-
     if IsUpdateFromFile then
       Model.UpdateFromFile(FileName)
     else
       Model.Update;
-
   finally
     Model.Free;
-
     if View <> Application.MainForm then
       Sync(procedure
       begin
@@ -95,5 +93,5 @@ begin
     end;
   end;
 end;
-
 end.
+

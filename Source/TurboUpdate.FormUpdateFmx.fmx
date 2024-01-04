@@ -45,10 +45,10 @@ object FormUpdateFmx: TFormUpdateFmx
         Cursor = crHandPoint
         StyledSettings = [Family, Size]
         HitTest = True
-        Size.Width = 124.000000000000000000
+        Size.Width = 121.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.Font.Style = [fsUnderline]
+        TextSettings.Font.StyleExt = {04040000000000000004000000}
         TextSettings.FontColor = claBlue
         TextSettings.WordWrap = False
         Text = 'ErrorSoft TurboUpdate'
@@ -234,7 +234,7 @@ object FormUpdateFmx: TFormUpdateFmx
         object LabelVersion: TLabel
           Align = Client
           AutoSize = True
-          Opacity = 0.699999988079071100
+          Opacity = 0.699999988079071000
           Size.Width = 326.000000000000000000
           Size.Height = 131.000000000000000000
           Size.PlatformDefault = False

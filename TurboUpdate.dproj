@@ -90,6 +90,7 @@
         <DCCReference Include="Source\TurboUpdate.Utils.pas"/>
         <DCCReference Include="Source\TurboUpdate.LanguagePTbr.pas"/>
         <DCCReference Include="Source\TurboUpdate.LanguageUS.pas"/>
+        <DCCReference Include="Source\TurboUpdate.Update.Thread.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

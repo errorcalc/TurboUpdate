@@ -3,7 +3,7 @@
         <ProjectGuid>{D82B6009-5B60-4ABF-921A-12D2F726ED7A}</ProjectGuid>
         <MainSource>TurboUpdateVCL.dpk</MainSource>
         <ProjectVersion>19.5</ProjectVersion>
-        <FrameworkType>None</FrameworkType>
+        <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -38,7 +38,7 @@
         <RuntimeOnlyPackage>true</RuntimeOnlyPackage>
         <GenPackage>true</GenPackage>
         <DCC_CBuilderOutput>All</DCC_CBuilderOutput>
-        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <GenDll>true</GenDll>
         <SanitizedProjectName>TurboUpdateVCL</SanitizedProjectName>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
@@ -84,8 +84,12 @@
         <DCCReference Include="TurboUpdate.dcp"/>
         <DCCReference Include="EsVclComponents.dcp"/>
         <DCCReference Include="EsVclCore.dcp"/>
-        <DCCReference Include="Source\TurboUpdate.FormUpdate.pas"/>
-        <DCCReference Include="Source\TurboUpdate.Update.pas"/>
+        <DCCReference Include="VCL\TurboUpdate.Update.pas"/>
+        <DCCReference Include="VCL\TurboUpdate.FormUpdate.pas">
+            <Form>FormUpdate</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="VCL\TurboUpdate.VCL.Utils.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -128,6 +132,12 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Bpl\TurboUpdateVCL.bpl" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\22.0\Bpl\TurboUpdateVCL.bpl" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>TurboUpdateVCL.bpl</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="OSX32">
                         <Operation>1</Operation>

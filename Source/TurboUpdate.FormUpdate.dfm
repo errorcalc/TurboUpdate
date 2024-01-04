@@ -12,9 +12,7 @@ object FormUpdate: TFormUpdate
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  OldCreateOrder = False
   OnClose = FormClose
-  PixelsPerInch = 96
   TextHeight = 15
   object Image: TEsImageControl
     AlignWithMargins = True
@@ -136,7 +134,6 @@ object FormUpdate: TFormUpdate
     Margins.Right = 8
     Margins.Bottom = 8
     Align = alBottom
-    IsDrawHelper = True
     TabOrder = 1
     object ButtonCancel: TButton
       Left = 389
@@ -151,7 +148,7 @@ object FormUpdate: TFormUpdate
     object LinkLabelTurboUpdate: TLinkLabel
       Left = 1
       Top = 3
-      Width = 123
+      Width = 122
       Height = 19
       Caption = 
         '<a href="http://github.com/errorcalc/TurboUpdate">ErrorSoft Turb' +
@@ -172,9 +169,7 @@ object FormUpdate: TFormUpdate
     Margins.Right = 8
     Margins.Bottom = 8
     Align = alClient
-    BufferedChildrens = True
-    IsDrawHelper = True
-    ParentBufferedChildrens = False
+    ParentBufferedChildren = False
     TabOrder = 2
     object LabelDescription: TLabel
       Left = 0
@@ -265,7 +260,6 @@ object FormUpdate: TFormUpdate
       PointType = Circle
       Active = True
       Color = clBtnFace
-      IsDrawHelper = True
       ParentBackground = False
       ParentColor = False
       TabOrder = 0

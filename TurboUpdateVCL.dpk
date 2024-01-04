@@ -1,5 +1,4 @@
 package TurboUpdateVCL;
-
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
@@ -37,8 +36,8 @@ requires
   EsVclCore;
 
 contains
-  TurboUpdate.FormUpdate in 'Source\TurboUpdate.FormUpdate.pas',
-  TurboUpdate.Update in 'Source\TurboUpdate.Update.pas';
+  TurboUpdate.Update in 'VCL\TurboUpdate.Update.pas',
+  TurboUpdate.FormUpdate in 'VCL\TurboUpdate.FormUpdate.pas' {FormUpdate},
+  TurboUpdate.VCL.Utils in 'VCL\TurboUpdate.VCL.Utils.pas';
 
 end.
-

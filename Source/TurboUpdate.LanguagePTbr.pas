@@ -14,7 +14,7 @@
 {******************************************************************************}
 {                                                                              }
 {Adicionado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
-{                                                                              }
+{added by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate      }
 {******************************************************************************}
 unit TurboUpdate.LanguagePTbr;
 

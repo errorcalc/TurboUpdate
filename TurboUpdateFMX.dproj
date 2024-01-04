@@ -81,8 +81,9 @@
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="fmx.dcp"/>
         <DCCReference Include="TurboUpdate.dcp"/>
-        <DCCReference Include="Source\TurboUpdate.UpdateFmx.pas"/>
-        <DCCReference Include="Source\TurboUpdate.FormUpdateFmx.pas"/>
+        <DCCReference Include="FMX\TurboUpdate.UpdateFmx.pas"/>
+        <DCCReference Include="FMX\TurboUpdate.FormUpdateFmx.pas"/>
+        <DCCReference Include="FMX\TurboUpdate.FMX.Utils.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -125,6 +126,12 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Bpl\TurboUpdateFMX.bpl" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\22.0\Bpl\TurboUpdateFMX.bpl" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>TurboUpdateFMX.bpl</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="OSX32">
                         <Operation>1</Operation>

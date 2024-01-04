@@ -13,15 +13,18 @@
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
 unit TurboUpdate.Update;
-
 interface
-
 uses
-  TurboUpdate.Types, System.Classes, System.SysUtils, Vcl.Forms, TurboUpdate.Model;
+  System.Classes,
+  System.SysUtils,
 
+  TurboUpdate.Model,
+  TurboUpdate.Types,
+  TurboUpdate.Update.Thread,
+
+  Vcl.Forms;
 procedure Update(const UpdateInfo: TUpdateInfo);
 procedure UpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
-
 type
   TVclUpdateThread = class(TUpdateThread)
   protected
@@ -30,19 +33,12 @@ type
     procedure Work; override;
     procedure Prepare; override;
   end;
-
 implementation
-
 uses
   TurboUpdate.FormUpdate, Vcl.Dialogs;
-
 //var
 //  UpdateThread: TThread = nil;
-
 procedure Update(const UpdateInfo: TUpdateInfo);
-//var
-//  Model: TUpdater;
-//  View: TFormUpdate;
 begin
 //  if UpdateThread <> nil then
 //    Exit;
@@ -78,47 +74,36 @@ begin
 //  end;
   TVclUpdateThread.Create(UpdateInfo).Update;
 end;
-
 procedure UpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
 begin
   TVclUpdateThread.Create(UpdateInfo).UpdateFromFile(FileName);
 end;
-
 //function IsDone: Boolean;
 //begin
 //  Result := (UpdateThread = nil);
 //end;
-
 { TVclUpdateThread }
-
 function TVclUpdateThread.CreateView: TCustomForm;
 begin
   Application.CreateForm(TFormUpdate, Result);
 end;
-
 procedure TVclUpdateThread.Prepare;
 begin
   View := CreateView;
 end;
-
 procedure TVclUpdateThread.Work;
 var
   Model: TUpdater;
-
 begin
-
   Model := nil;
   try
     Model := CreateModel(View as IUpdateView);
-
     if IsUpdateFromFile then
       Model.UpdateFromFile(FileName)
     else
       Model.Update;
-
   finally
     Model.Free;
-
     if View <> Application.MainForm then
       Sync(procedure
       begin
@@ -134,10 +119,8 @@ begin
     end;
   end;
 end;
-
 //initialization
 //  AddTerminateProc(IsDone);
 //
 //finalization
-
 end.

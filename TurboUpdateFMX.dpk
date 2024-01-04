@@ -1,5 +1,4 @@
 package TurboUpdateFMX;
-
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
@@ -34,8 +33,8 @@ requires
   TurboUpdate;
 
 contains
-  TurboUpdate.UpdateFmx in 'Source\TurboUpdate.UpdateFmx.pas',
-  TurboUpdate.FormUpdateFmx in 'Source\TurboUpdate.FormUpdateFmx.pas';
+  TurboUpdate.UpdateFmx in 'FMX\TurboUpdate.UpdateFmx.pas',
+  TurboUpdate.FormUpdateFmx in 'FMX\TurboUpdate.FormUpdateFmx.pas',
+  TurboUpdate.FMX.Utils in 'FMX\TurboUpdate.FMX.Utils.pas';
 
 end.
-
