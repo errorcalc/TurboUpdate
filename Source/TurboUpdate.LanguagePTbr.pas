@@ -45,6 +45,7 @@ type
     function DownloadError: string;
     function CorruptedFilesError: string;
     function DoneMessage: string;
+    function DoneMessageRestart : string;
     function Version: string;
   end;
 
@@ -74,6 +75,11 @@ end;
 function TMessageConstsPTbr.DoneMessage: string;
 begin
   Result := 'Atualização bem-sucedida! Por favor, reinicie o aplicativo.';
+end;
+
+function TMessageConstsPTbr.DoneMessageRestart: string;
+begin
+  Result := 'Atualização bem-sucedida! O aplicativo será reiniciado.';
 end;
 
 function TMessageConstsPTbr.DoneStatus: string;

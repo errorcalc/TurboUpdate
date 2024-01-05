@@ -31,6 +31,7 @@ type
     function DownloadError : string;
     function CorruptedFilesError : string;
     function DoneMessage : string;
+    function DoneMessageRestart : string;
     function Version : string;
   end;
   IFactoryConsts = interface //Adicionado por Renato Trevisan 02/01/24
@@ -63,6 +64,7 @@ type
     property Model: IUpdateModel write SetModel;
     property State: TUpdateState write SetUpdateState;
   end;
+
   TFileVersion = record
   public
     Major: Word;
@@ -83,16 +85,19 @@ type
     {$ENDIF}
     function ToString: string;
   end;
+
   TUpdateInfo = record
     // Main
     ExeNames: TStringArray;
     Urls: TStringArray;
     Name: string;
     RootPath: string;
+    ReopenApp : boolean;
     // Optional
     Description: string;
     PngRes: string;
   end;
+
 {$IFDEF MSWINDOWS}
 function GetFileVersion(FileName: string; out Version: TFileVersion): Boolean;
 {$ENDIF}

@@ -45,6 +45,7 @@ type
     function DownloadError: string;
     function CorruptedFilesError: string;
     function DoneMessage: string;
+    function DoneMessageRestart : string;
     function Version: string;
   end;
 
@@ -73,7 +74,12 @@ end;
 
 function TMessageConstsUS.DoneMessage: string;
 begin
-  Result := 'Successful!, Please Restart Application';
+  Result := 'Successful! Please Restart Application';
+end;
+
+function TMessageConstsUS.DoneMessageRestart: string;
+begin
+  Result := 'Successful! The app will be restarted';
 end;
 
 function TMessageConstsUS.DoneStatus: string;

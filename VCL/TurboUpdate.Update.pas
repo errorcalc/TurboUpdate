@@ -20,9 +20,12 @@ uses
   System.Classes,
   System.SysUtils,
 
+  TurboUpdate.FormUpdate,
   TurboUpdate.Model,
   TurboUpdate.Types,
   TurboUpdate.Update.Thread,
+
+  Vcl.Dialogs,
   Vcl.Forms;
 type
   TVclUpdateThread = class(TUpdateThread)
@@ -34,9 +37,6 @@ type
   end;
 
 implementation
-
-uses
-  TurboUpdate.FormUpdate, Vcl.Dialogs;
 
 { TVclUpdateThread }
 function TVclUpdateThread.CreateView: TCustomForm;

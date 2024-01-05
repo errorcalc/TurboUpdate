@@ -13,9 +13,7 @@
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
 unit TurboUpdate.FormUpdateFmx;
-
 interface
-
 uses
   FMX.Controls,
   FMX.Controls.Presentation,
@@ -35,7 +33,6 @@ uses
   System.Variants,
 
   TurboUpdate.Types;
-
 type
   TFormUpdateFmx = class(TForm, IUpdateView)
     LayoutMain: TLayout;
@@ -74,54 +71,43 @@ type
     procedure IUpdateView.Show = ViewShow;
       procedure ViewShow;
   end;
-
 implementation
-
 uses
   Winapi.ShellApi;
 {$R *.fmx}
 
-
 { TFormUpdateFmx }
-
 procedure TFormUpdateFmx.ButtonCancelClick(Sender: TObject);
 begin
   Model.Cancel;
 end;
-
 procedure TFormUpdateFmx.ViewClose;
 begin
   OnClose := nil;
   inherited Close;
 end;
-
 procedure TFormUpdateFmx.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := TCloseAction.caNone;
   Model.Cancel;
 end;
-
 procedure TFormUpdateFmx.LabelTurboUpdateClick(Sender: TObject);
 begin
   ShellExecute(0, 'Open', PChar('http://github.com/errorcalc/TurboUpdate'), nil, nil, 0);
 end;
-
 procedure TFormUpdateFmx.Progress(Progress, Length: Integer);
 begin
   ProgressBar.Max := Length;
   ProgressBar.Value := Progress;
 end;
-
 procedure TFormUpdateFmx.SetDescription(const Value: string);
 begin
   LabelDescription.Text := Value;
 end;
-
 procedure TFormUpdateFmx.SetModel(Model: IUpdateModel);
 begin
   Self.Model := Model;
 end;
-
 procedure TFormUpdateFmx.SetPngRes(const Value: string);
 var
   Stream: TResourceStream;
@@ -133,12 +119,10 @@ begin
     Stream.Free;
   end;
 end;
-
 procedure TFormUpdateFmx.SetStatus(const Value: string);
 begin
   LabelState.Text := Value;
 end;
-
 procedure TFormUpdateFmx.SetUpdateState(Value: TUpdateState);
 begin
   case Value of
@@ -147,44 +131,36 @@ begin
         LabelWaiting.Visible := True;
         ButtonCancel.Enabled := False;
       end;
-
     TUpdateState.Downloading:
       begin
         ButtonCancel.Enabled := True;
         LabelWaiting.Visible := False;
       end;
-
     TUpdateState.Unpacking:
       begin
         ButtonCancel.Enabled := False;
         LabelWaiting.Visible := False;
       end;
-
     TUpdateState.Done:
       begin
         LabelWaiting.Visible := False;
       end;
   end;
 end;
-
 procedure TFormUpdateFmx.SetVersion(const Value: string);
 begin
   LabelVersion.Text := Value;
 end;
-
 procedure TFormUpdateFmx.ViewShow;
 begin
   inherited Show;
 end;
-
 function TFormUpdateFmx.ShowErrorMessage(Message: string): Boolean;
 begin
   Result := MessageDlg(Message, TMsgDlgType.mtError, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0) = mrYes;
 end;
-
 procedure TFormUpdateFmx.ShowMessage(Message: string);
 begin
   MessageDlg(Message, TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], 0);
 end;
-
 end.

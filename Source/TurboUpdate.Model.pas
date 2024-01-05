@@ -42,6 +42,7 @@ type
     IsAbort: Boolean;
     RootPath: string;
     UpdateFile: string;
+    ReopenApp : boolean; // add by Renato Trevisan
   protected
     View: IUpdateView;
     FConsts: IFactoryConsts;
@@ -73,20 +74,14 @@ implementation
 uses
   TurboUpdate.Update.Thread; // added by renato trevisan
 
-//function NormalizeFileName(FileName: string): string;
-//begin
-//  Result := FileName.Replace('/', PathDelim);
-//end;
-
 {$HINTS OFF}
-
 function FileToOld(FileName: string): Boolean;
 const
   Suffics = '.old';
 begin
   if FileExists(FileName + Suffics) then
-    if not DeleteFile(FileName + Suffics) then
-      Exit(False);
+   if not DeleteFile(FileName + Suffics) then
+     Exit(False);
 
   if FileExists(FileName) then
     if not RenameFile(FileName, FileName + Suffics) then
@@ -95,6 +90,7 @@ begin
   Result := True;
 end;
 {$HINTS ON}
+
 { TUpdateModel }
 
 procedure TUpdater.Cancel;
@@ -117,6 +113,7 @@ begin
   FConsts := TFactoryConsts.New;
   Urls := UpdateInfo.Urls;
   Name := UpdateInfo.Name;
+  ReopenApp := UpdateInfo.ReopenApp; // Add by Renato Trevisan
   ExeNames := UpdateInfo.ExeNames + [ExtractFileName(ParamStr(0))];
   RootPath := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)) +
     PathDelim + UpdateInfo.RootPath);
@@ -169,9 +166,14 @@ begin
     begin
       View.State := TUpdateState.Done;
       View.Status := FConsts.Consts.DoneStatus;
-      View.ShowMessage(FConsts.Consts.DoneMessage);
-      TurboUpdate.Utils.LaunchUpdateApp(ExeNames[0], True);
-      // open new update by application or app in inno setup //add by Francisco Aurino in 17/12/2022 16:25:43
+      if ReopenApp then // Add by Renato Trevisan
+       begin
+        View.ShowMessage(FConsts.Consts.DoneMessageRestart); // Add by Renato Trevisan
+        TurboUpdate.Utils.LaunchUpdateApp(ExeNames[0], True); // open new update by application or app in inno setup //add by Francisco Aurino in 17/12/2022 16:25:43
+       end else
+       begin
+        View.ShowMessage(FConsts.Consts.DoneMessage);
+       end;
     end);
 end;
 
@@ -321,7 +323,7 @@ begin
       begin
         for ExeName in ExeNames do
         begin
-          FileName := ExtractFileName(NormalizeFileName(ZipFile.FileName[I]));
+         FileName := ExtractFileName(NormalizeFileName(ZipFile.FileName[I]));
           if ExeName.ToUpper = FileName.ToUpper then
           begin
             FullFileName := RootPath + NormalizeFileName(ZipFile.FileName[I]);
