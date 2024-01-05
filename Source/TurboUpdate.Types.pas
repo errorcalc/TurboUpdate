@@ -42,6 +42,7 @@ type
   ['{CEAD1A55-AF8B-4003-B1C2-84D7371D2CE1}']
     procedure Cancel;
   end;
+
   IUpdateView = interface
   ['{D7D57022-217A-4D79-944F-6D3112D674D9}']
     procedure SetVersion(const Value: string);
@@ -92,7 +93,6 @@ type
     Urls: TStringArray;
     Name: string;
     RootPath: string;
-    ReopenApp : boolean;
     // Optional
     Description: string;
     PngRes: string;

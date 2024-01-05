@@ -42,7 +42,6 @@ type
     IsAbort: Boolean;
     RootPath: string;
     UpdateFile: string;
-    ReopenApp : boolean; // add by Renato Trevisan
   protected
     View: IUpdateView;
     FConsts: IFactoryConsts;
@@ -113,7 +112,6 @@ begin
   FConsts := TFactoryConsts.New;
   Urls := UpdateInfo.Urls;
   Name := UpdateInfo.Name;
-  ReopenApp := UpdateInfo.ReopenApp; // Add by Renato Trevisan
   ExeNames := UpdateInfo.ExeNames + [ExtractFileName(ParamStr(0))];
   RootPath := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)) +
     PathDelim + UpdateInfo.RootPath);
@@ -166,14 +164,7 @@ begin
     begin
       View.State := TUpdateState.Done;
       View.Status := FConsts.Consts.DoneStatus;
-      if ReopenApp then // Add by Renato Trevisan
-       begin
-        View.ShowMessage(FConsts.Consts.DoneMessageRestart); // Add by Renato Trevisan
-        TurboUpdate.Utils.LaunchUpdateApp(ExeNames[0], True); // open new update by application or app in inno setup //add by Francisco Aurino in 17/12/2022 16:25:43
-       end else
-       begin
-        View.ShowMessage(FConsts.Consts.DoneMessage);
-       end;
+      TurboUpdate.Utils.LaunchUpdateApp(ExeNames[0], True); // open new update by application or app in inno setup //add by Francisco Aurino in 17/12/2022 16:25:43
     end);
 end;
 
