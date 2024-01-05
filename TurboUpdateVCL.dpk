@@ -36,8 +36,8 @@ requires
   EsVclCore;
 
 contains
-  TurboUpdate.Update in 'VCL\TurboUpdate.Update.pas',
-  TurboUpdate.FormUpdate in 'VCL\TurboUpdate.FormUpdate.pas' {FormUpdate},
-  TurboUpdate.VCL.Utils in 'VCL\TurboUpdate.VCL.Utils.pas';
+  TurboUpdate.Update in 'Source\VCL\TurboUpdate.Update.pas',
+  TurboUpdate.FormUpdate in 'Source\VCL\TurboUpdate.FormUpdate.pas' {FormUpdate},
+  TurboUpdate.VCL.Utils in 'Source\VCL\TurboUpdate.VCL.Utils.pas';
 
 end.

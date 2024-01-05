@@ -81,9 +81,9 @@
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="fmx.dcp"/>
         <DCCReference Include="TurboUpdate.dcp"/>
-        <DCCReference Include="FMX\TurboUpdate.UpdateFmx.pas"/>
-        <DCCReference Include="FMX\TurboUpdate.FormUpdateFmx.pas"/>
-        <DCCReference Include="FMX\TurboUpdate.FMX.Utils.pas"/>
+        <DCCReference Include="Source\FMX\TurboUpdate.UpdateFmx.pas"/>
+        <DCCReference Include="Source\FMX\TurboUpdate.FormUpdateFmx.pas"/>
+        <DCCReference Include="Source\FMX\TurboUpdate.FMX.Utils.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

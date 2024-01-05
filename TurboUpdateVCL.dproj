@@ -84,12 +84,12 @@
         <DCCReference Include="TurboUpdate.dcp"/>
         <DCCReference Include="EsVclComponents.dcp"/>
         <DCCReference Include="EsVclCore.dcp"/>
-        <DCCReference Include="VCL\TurboUpdate.Update.pas"/>
-        <DCCReference Include="VCL\TurboUpdate.FormUpdate.pas">
+        <DCCReference Include="Source\VCL\TurboUpdate.Update.pas"/>
+        <DCCReference Include="Source\VCL\TurboUpdate.FormUpdate.pas">
             <Form>FormUpdate</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="VCL\TurboUpdate.VCL.Utils.pas"/>
+        <DCCReference Include="Source\VCL\TurboUpdate.VCL.Utils.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -12,155 +12,164 @@
 { You can order developing vcl/fmx components, please submit requests to mail. }
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
-unit TurboUpdate.FormUpdateFmx;
+unit TurboUpdate.FormUpdate;
 interface
 uses
-  FMX.Controls,
-  FMX.Controls.Presentation,
-  FMX.Dialogs,
-  FMX.Forms,
-  FMX.Graphics,
-  FMX.Layouts,
-  FMX.Objects,
-  FMX.StdCtrls,
-  FMX.Types,
-//  FMX.DialogService,
-//  FMX.DialogService.Sync,
+  ES.BaseControls,
+  ES.Images,
+  ES.Indicators,
+  ES.Layouts,
+
   System.Classes,
   System.SysUtils,
-  System.Types,
-  System.UITypes,
   System.Variants,
 
-  TurboUpdate.Types;
+  TurboUpdate.Types,
+
+  Vcl.Controls,
+  Vcl.Dialogs,
+  Vcl.ExtCtrls,
+  Vcl.Forms,
+  Vcl.Graphics,
+  Vcl.Imaging.pngimage,
+  Vcl.StdCtrls,
+
+  Winapi.Messages,
+  Winapi.Windows;
 type
-  TFormUpdateFmx = class(TForm, IUpdateView)
-    LayoutMain: TLayout;
-    LayoutFotter: TLayout;
+  TFormUpdate = class(TForm, IUpdateView)
+    Image: TEsImageControl;
+    LayoutFotter: TEsLayout;
+    ProgressBar: TEsActivityBar;
     ButtonCancel: TButton;
-    LineFotterSeparator: TLine;
-    ProgressBar: TProgressBar;
-    LayoutImage: TLayout;
-    Image: TImage;
-    LayoutInfo: TLayout;
+    LabelStatus: TLabel;
+    LayoutMain: TEsLayout;
     LabelDescription: TLabel;
-    LabelState: TLabel;
+    LayoutProgress: TEsLayout;
+    LayoutFotterSeparator: TEsLayout;
     LabelVersion: TLabel;
-    LayoutForm: TLayout;
-    LabelWaiting: TLabel;
-    LayoutProgress: TLayout;
-    LabelTurboUpdate: TLabel;
+    LinkLabelTurboUpdate: TLinkLabel;
     procedure ButtonCancelClick(Sender: TObject);
+    procedure LinkLabelTurboUpdateLinkClick(Sender: TObject; const Link: string; LinkType: TSysLinkType);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure LabelTurboUpdateClick(Sender: TObject);
   private
     Model: IUpdateModel;
   public
     { IUpdateView }
     procedure SetVersion(const Value: string);
     procedure SetDescription(const Value: string);
-    procedure SetStatus(const Value: string);
     procedure SetPngRes(const Value: string);
     procedure SetModel(Model: IUpdateModel);
+    procedure SetStatus(const Value: string);
     procedure SetUpdateState(Value: TUpdateState);
     procedure ShowMessage(Message: string);
     function ShowErrorMessage(Message: string): Boolean;
-    procedure Progress(Progress, Length: Integer);
     procedure IUpdateView.Close = ViewClose;
       procedure ViewClose;
     procedure IUpdateView.Show = ViewShow;
       procedure ViewShow;
+    procedure Progress(Progress, Length: Integer);
   end;
 implementation
 uses
-  Winapi.ShellApi;
-{$R *.fmx}
+  System.UITypes,
 
-{ TFormUpdateFmx }
-procedure TFormUpdateFmx.ButtonCancelClick(Sender: TObject);
+  Winapi.ShellApi;
+{$R *.dfm}
+
+{ TFormUpdate }
+procedure TFormUpdate.ButtonCancelClick(Sender: TObject);
 begin
   Model.Cancel;
 end;
-procedure TFormUpdateFmx.ViewClose;
+procedure TFormUpdate.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  OnClose := nil;
-  inherited Close;
-end;
-procedure TFormUpdateFmx.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  Action := TCloseAction.caNone;
   Model.Cancel;
+  Action := caNone;
 end;
-procedure TFormUpdateFmx.LabelTurboUpdateClick(Sender: TObject);
+procedure TFormUpdate.LinkLabelTurboUpdateLinkClick(Sender: TObject; const Link: string; LinkType: TSysLinkType);
 begin
-  ShellExecute(0, 'Open', PChar('http://github.com/errorcalc/TurboUpdate'), nil, nil, 0);
+  ShellExecute(0, 'Open', PChar(Link), nil, nil, 0);
 end;
-procedure TFormUpdateFmx.Progress(Progress, Length: Integer);
+procedure TFormUpdate.Progress(Progress, Length: Integer);
 begin
+  ProgressBar.AnimationType := TActivityAnimationType.Progress;
   ProgressBar.Max := Length;
-  ProgressBar.Value := Progress;
+  ProgressBar.Position := Progress;
 end;
-procedure TFormUpdateFmx.SetDescription(const Value: string);
+procedure TFormUpdate.SetDescription(const Value: string);
 begin
-  LabelDescription.Text := Value;
+  LabelDescription.Caption := Value;
 end;
-procedure TFormUpdateFmx.SetModel(Model: IUpdateModel);
+procedure TFormUpdate.SetModel(Model: IUpdateModel);
 begin
   Self.Model := Model;
 end;
-procedure TFormUpdateFmx.SetPngRes(const Value: string);
+procedure TFormUpdate.SetPngRes(const Value: string);
 var
-  Stream: TResourceStream;
+  Png: TPngImage;
 begin
-  Stream := TResourceStream.Create(HInstance, Value, RT_RCDATA);
+  Png := TPngImage.Create;
   try
-    Image.Bitmap.LoadFromStream(Stream);
+    Png.LoadFromResourceName(hInstance, PChar(Value));
+    Image.Picture.Assign(Png);
   finally
-    Stream.Free;
+    Png.Free;
   end;
 end;
-procedure TFormUpdateFmx.SetStatus(const Value: string);
+procedure TFormUpdate.SetStatus(const Value: string);
 begin
-  LabelState.Text := Value;
+  LabelStatus.Caption := Value;
 end;
-procedure TFormUpdateFmx.SetUpdateState(Value: TUpdateState);
+procedure TFormUpdate.SetUpdateState(Value: TUpdateState);
 begin
   case Value of
     TUpdateState.Waiting:
       begin
-        LabelWaiting.Visible := True;
+        ProgressBar.Activate;
+        ProgressBar.AnimationType := TActivityAnimationType.WindowsX;
         ButtonCancel.Enabled := False;
       end;
     TUpdateState.Downloading:
       begin
+        ProgressBar.AnimationType := TActivityAnimationType.Progress;
         ButtonCancel.Enabled := True;
-        LabelWaiting.Visible := False;
       end;
     TUpdateState.Unpacking:
       begin
         ButtonCancel.Enabled := False;
-        LabelWaiting.Visible := False;
+        ProgressBar.AnimationType := TActivityAnimationType.Progress;
       end;
     TUpdateState.Done:
       begin
-        LabelWaiting.Visible := False;
+        ProgressBar.Deactivate;
       end;
   end;
 end;
-procedure TFormUpdateFmx.SetVersion(const Value: string);
+procedure TFormUpdate.SetVersion(const Value: string);
 begin
-  LabelVersion.Text := Value;
+  LabelVersion.Caption := Value;
 end;
-procedure TFormUpdateFmx.ViewShow;
+procedure TFormUpdate.ViewShow;
 begin
+  if Application.MainForm <> Self then
+  begin
+    Self.FormStyle := fsStayOnTop;
+    Self.Position := poScreenCenter;  // Add by Renato Trevisan
+  end;
   inherited Show;
 end;
-function TFormUpdateFmx.ShowErrorMessage(Message: string): Boolean;
+function TFormUpdate.ShowErrorMessage(Message: string): Boolean;
 begin
-  Result := MessageDlg(Message, TMsgDlgType.mtError, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0) = mrYes;
+  Result := MessageDlg(Message, mtError, [mbYes, mbNo], 0) = mrYes;
 end;
-procedure TFormUpdateFmx.ShowMessage(Message: string);
+procedure TFormUpdate.ShowMessage(Message: string);
 begin
-  MessageDlg(Message, TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], 0);
+  MessageDlg(Message, mtInformation, [mbOk], 0);
+end;
+procedure TFormUpdate.ViewClose;
+begin
+  OnClose := nil;
+  inherited Close;
 end;
 end.

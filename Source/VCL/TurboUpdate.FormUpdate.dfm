@@ -122,6 +122,7 @@ object FormUpdate: TFormUpdate
       426082}
     Stretch = Mixed
     TabOrder = 0
+    ExplicitHeight = 129
   end
   object LayoutFotter: TEsLayout
     AlignWithMargins = True
@@ -135,6 +136,8 @@ object FormUpdate: TFormUpdate
     Margins.Bottom = 8
     Align = alBottom
     TabOrder = 1
+    ExplicitTop = 181
+    ExplicitWidth = 460
     object ButtonCancel: TButton
       Left = 389
       Top = 0
@@ -144,6 +147,7 @@ object FormUpdate: TFormUpdate
       Caption = 'Cancel'
       TabOrder = 0
       OnClick = ButtonCancelClick
+      ExplicitLeft = 385
     end
     object LinkLabelTurboUpdate: TLinkLabel
       Left = 1
@@ -171,6 +175,8 @@ object FormUpdate: TFormUpdate
     Align = alClient
     ParentBufferedChildren = False
     TabOrder = 2
+    ExplicitWidth = 322
+    ExplicitHeight = 129
     object LabelDescription: TLabel
       Left = 0
       Top = 0
@@ -243,6 +249,8 @@ object FormUpdate: TFormUpdate
     ParentBackground = False
     ParentColor = False
     TabOrder = 3
+    ExplicitTop = 145
+    ExplicitWidth = 460
     object ProgressBar: TEsActivityBar
       Left = 1
       Top = 1
@@ -263,6 +271,7 @@ object FormUpdate: TFormUpdate
       ParentBackground = False
       ParentColor = False
       TabOrder = 0
+      ExplicitWidth = 458
     end
   end
   object LayoutFotterSeparator: TEsLayout
@@ -280,5 +289,7 @@ object FormUpdate: TFormUpdate
     ParentBackground = False
     ParentColor = False
     TabOrder = 4
+    ExplicitTop = 172
+    ExplicitWidth = 460
   end
 end
