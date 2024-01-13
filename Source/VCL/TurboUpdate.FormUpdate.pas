@@ -14,11 +14,15 @@
 {******************************************************************************}
 unit TurboUpdate.FormUpdate;
 interface
+
 uses
   ES.BaseControls,
   ES.Images,
   ES.Indicators,
   ES.Layouts,
+
+  HDMessageDlg,
+  HDMessageDlg.Interfaces,
 
   System.Classes,
   System.SysUtils,
@@ -36,6 +40,7 @@ uses
 
   Winapi.Messages,
   Winapi.Windows;
+
 type
   TFormUpdate = class(TForm, IUpdateView)
     Image: TEsImageControl;
@@ -65,17 +70,17 @@ type
     procedure ShowMessage(Message: string);
     function ShowErrorMessage(Message: string): Boolean;
     procedure IUpdateView.Close = ViewClose;
-      procedure ViewClose;
+    procedure ViewClose;
     procedure IUpdateView.Show = ViewShow;
-      procedure ViewShow;
+    procedure ViewShow;
     procedure Progress(Progress, Length: Integer);
   end;
 implementation
+
 uses
   System.UITypes,
 
-  Winapi.ShellApi;
-{$R *.dfm}
+  Winapi.ShellApi;{$R *.dfm}
 
 { TFormUpdate }
 procedure TFormUpdate.ButtonCancelClick(Sender: TObject);
@@ -160,12 +165,33 @@ begin
   inherited Show;
 end;
 function TFormUpdate.ShowErrorMessage(Message: string): Boolean;
+var
+ Msg : iHDMessageDlg;
 begin
-  Result := MessageDlg(Message, mtError, [mbYes, mbNo], 0) = mrYes;
+  Msg := THDMessageDlg.New;
+  Result :=
+   Msg
+    .MsgTitle('Update')
+    .MsgQuestion('')
+    .MsgBody(Message)
+    .MsgIcon(iError)
+    .MsgType(tQuestion)
+    .DisplayQuestion;  // add by Renato Trevisan 12-1-24
+//  Result := MessageDlg(Message, mtError, [mbYes, mbNo], 0) = mrYes;
 end;
 procedure TFormUpdate.ShowMessage(Message: string);
+var
+ Msg : iHDMessageDlg;
 begin
-  MessageDlg(Message, mtInformation, [mbOk], 0);
+  Msg := THDMessageDlg.New;
+   Msg
+    .MsgTitle('Update')
+    .MsgQuestion('')
+    .MsgBody(Message)
+    .MsgIcon(iError)
+    .MsgType(tOK)
+    .DisplayMessage; // add by Renato Trevisan 12-1-24
+//  MessageDlg(Message, mtInformation, [mbOk], 0);
 end;
 procedure TFormUpdate.ViewClose;
 begin

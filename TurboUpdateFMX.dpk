@@ -30,7 +30,8 @@ package TurboUpdateFMX;
 requires
   rtl,
   fmx,
-  TurboUpdate;
+  TurboUpdate,
+  HDMessageDlg;
 
 contains
   TurboUpdate.UpdateFmx in 'Source\FMX\TurboUpdate.UpdateFmx.pas',

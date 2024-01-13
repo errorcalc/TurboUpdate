@@ -33,7 +33,9 @@ requires
   vclimg,
   TurboUpdate,
   EsVclComponents,
-  EsVclCore;
+  EsVclCore,
+  fmx,
+  HDMessageDlg;
 
 contains
   TurboUpdate.Update in 'Source\VCL\TurboUpdate.Update.pas',

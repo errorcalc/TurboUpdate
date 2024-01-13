@@ -24,7 +24,8 @@ uses
   FMX.Objects,
   FMX.StdCtrls,
   FMX.Types,
-
+  HDMessageDlg.Interfaces,
+  HDMessageDlg,
   System.Classes,
   System.SysUtils,
   System.Types,
@@ -156,11 +157,32 @@ begin
   inherited Show;
 end;
 function TFormUpdateFmx.ShowErrorMessage(Message: string): Boolean;
+var
+ Msg : iHDMessageDlg;
 begin
-  Result := MessageDlg(Message, TMsgDlgType.mtError, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0) = mrYes;
+  Msg := THDMessageDlg.New;
+  Result :=
+   Msg
+    .MsgTitle('Update')
+    .MsgQuestion('')
+    .MsgBody(Message)
+    .MsgIcon(iError)
+    .MsgType(tQuestion)
+    .DisplayQuestion;  // add by Renato Trevisan 12-1-24
+//  Result := MessageDlg(Message, TMsgDlgType.mtError, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0) = mrYes;
 end;
 procedure TFormUpdateFmx.ShowMessage(Message: string);
+var
+ Msg : iHDMessageDlg;
 begin
-  MessageDlg(Message, TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], 0);
+  Msg := THDMessageDlg.New;
+   Msg
+    .MsgTitle('Update')
+    .MsgQuestion('')
+    .MsgBody(Message)
+    .MsgIcon(iError)
+    .MsgType(tOK)
+    .DisplayMessage; // add by Renato Trevisan 12-1-24
+//  MessageDlg(Message, TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], 0);
 end;
 end.
