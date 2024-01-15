@@ -3,7 +3,7 @@
         <ProjectGuid>{F56DCE46-F9CC-4A6E-9C98-78ABA43F3742}</ProjectGuid>
         <MainSource>TurboUpdateFMX.dpk</MainSource>
         <ProjectVersion>19.5</ProjectVersion>
-        <FrameworkType>None</FrameworkType>
+        <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -81,11 +81,13 @@
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="fmx.dcp"/>
-        <DCCReference Include="TurboUpdate.dcp"/>
-        <DCCReference Include="HDMessageDlg.dcp"/>
-        <DCCReference Include="Source\FMX\TurboUpdate.UpdateFmx.pas"/>
-        <DCCReference Include="Source\FMX\TurboUpdate.FormUpdateFmx.pas"/>
+        <DCCReference Include="dbrtl.dcp"/>
         <DCCReference Include="Source\FMX\TurboUpdate.FMX.Utils.pas"/>
+        <DCCReference Include="Source\FMX\TurboUpdate.FormUpdateFmx.pas">
+            <Form>FormUpdateFmx</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Source\FMX\TurboUpdate.UpdateFmx.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -4,16 +4,15 @@ object FormMain: TFormMain
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Test'
-  ClientHeight = 89
-  ClientWidth = 489
+  ClientHeight = 88
+  ClientWidth = 485
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
-  PixelsPerInch = 96
+  OnCreate = FormCreate
   TextHeight = 13
   object Label1: TLabel
     Left = 8

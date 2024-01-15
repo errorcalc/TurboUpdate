@@ -24,6 +24,7 @@ uses
   System.Classes,
   System.SysUtils,
 
+  TurboUpdate.Interfaces,
   TurboUpdate.Model,
   TurboUpdate.Types;
 

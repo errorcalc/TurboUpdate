@@ -12,20 +12,23 @@
 { You can order developing vcl/fmx components, please submit requests to mail. }
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
+{                                                                              }
+{Modidicado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
+{Modified by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate   }
+{******************************************************************************}
 unit TurboUpdate.Consts;
 {$I \Language.inc}
 
 interface
 
 uses
-  Data.DB,
-
   System.Classes,
   System.SysUtils,
 
   TurboUpdate.LanguagePTbr,
   TurboUpdate.LanguageUS,
-  TurboUpdate.Types;
+
+  TurboUpdate.Interfaces;
 
 type
   TFactoryConsts = class (TInterfacedObject, IFactoryConsts)

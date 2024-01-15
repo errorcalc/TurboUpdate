@@ -3,7 +3,7 @@
         <ProjectGuid>{00225B2F-83CF-4697-90F1-FBA265FA25AB}</ProjectGuid>
         <MainSource>TurboUpdate.dpk</MainSource>
         <ProjectVersion>19.5</ProjectVersion>
-        <FrameworkType>None</FrameworkType>
+        <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -37,7 +37,7 @@
     <PropertyGroup Condition="'$(Base)'!=''">
         <GenPackage>true</GenPackage>
         <RuntimeOnlyPackage>true</RuntimeOnlyPackage>
-        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <DCC_CBuilderOutput>All</DCC_CBuilderOutput>
         <SanitizedProjectName>TurboUpdate</SanitizedProjectName>
         <GenDll>true</GenDll>
@@ -48,7 +48,8 @@
         <DCC_S>false</DCC_S>
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
-    <DCC_UnitSearchPath>modules\.dcp;modules\.dcu;$(DCC_UnitSearchPath);modules;modules\hdmessagedlg\src\FMX;modules\hdmessagedlg\src</DCC_UnitSearchPath></PropertyGroup>
+        <DCC_UnitSearchPath>modules\.dcp;modules\.dcu;modules;modules\hdmessagedlg\src\FMX;modules\hdmessagedlg\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
@@ -81,8 +82,14 @@
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="dbrtl.dcp"/>
+        <DCCReference Include="vclimg.dcp"/>
+        <DCCReference Include="vcl.dcp"/>
+        <DCCReference Include="vclwinx.dcp"/>
+        <DCCReference Include="fmx.dcp"/>
+        <DCCReference Include="EsVclComponents.dcp"/>
+        <DCCReference Include="EsVclCore.dcp"/>
+        <DCCReference Include="HDMessageDlg.dcp"/>
         <DCCReference Include="Source\TurboUpdate.Consts.pas"/>
-        <DCCReference Include="Source\TurboUpdate.Download.pas"/>
         <DCCReference Include="Source\TurboUpdate.Internet.pas"/>
         <DCCReference Include="Source\TurboUpdate.Model.pas"/>
         <DCCReference Include="Source\TurboUpdate.Types.pas"/>
@@ -91,6 +98,20 @@
         <DCCReference Include="Source\TurboUpdate.LanguagePTbr.pas"/>
         <DCCReference Include="Source\TurboUpdate.LanguageUS.pas"/>
         <DCCReference Include="Source\TurboUpdate.Update.Thread.pas"/>
+        <DCCReference Include="Source\TurboUpdate.Interfaces.pas"/>
+        <DCCReference Include="Source\TurboUpdate.pas"/>
+        <DCCReference Include="Source\VCL\TurboUpdate.FormUpdate.pas">
+            <Form>FormUpdate</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Source\VCL\TurboUpdate.Update.pas"/>
+        <DCCReference Include="Source\VCL\TurboUpdate.VCL.Utils.pas"/>
+        <DCCReference Include="Source\FMX\TurboUpdate.FMX.Utils.pas"/>
+        <DCCReference Include="Source\FMX\TurboUpdate.FormUpdateFmx.pas">
+            <Form>FormUpdateFmx</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Source\FMX\TurboUpdate.UpdateFmx.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

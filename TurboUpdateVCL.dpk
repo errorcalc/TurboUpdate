@@ -34,12 +34,11 @@ requires
   TurboUpdate,
   EsVclComponents,
   EsVclCore,
-  fmx,
-  HDMessageDlg;
+  fmx;
 
 contains
-  TurboUpdate.Update in 'Source\VCL\TurboUpdate.Update.pas',
   TurboUpdate.FormUpdate in 'Source\VCL\TurboUpdate.FormUpdate.pas' {FormUpdate},
+  TurboUpdate.Update in 'Source\VCL\TurboUpdate.Update.pas',
   TurboUpdate.VCL.Utils in 'Source\VCL\TurboUpdate.VCL.Utils.pas';
 
 end.

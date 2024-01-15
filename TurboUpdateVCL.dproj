@@ -86,12 +86,11 @@
         <DCCReference Include="EsVclComponents.dcp"/>
         <DCCReference Include="EsVclCore.dcp"/>
         <DCCReference Include="fmx.dcp"/>
-        <DCCReference Include="HDMessageDlg.dcp"/>
-        <DCCReference Include="Source\VCL\TurboUpdate.Update.pas"/>
         <DCCReference Include="Source\VCL\TurboUpdate.FormUpdate.pas">
             <Form>FormUpdate</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Source\VCL\TurboUpdate.Update.pas"/>
         <DCCReference Include="Source\VCL\TurboUpdate.VCL.Utils.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

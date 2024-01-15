@@ -22,6 +22,7 @@ uses
   System.Classes,
   System.SysUtils,
 
+  TurboUpdate.Interfaces,
   TurboUpdate.Model,
   TurboUpdate.Types,
   TurboUpdate.Update.Thread;
@@ -68,7 +69,8 @@ begin
     if View <> Application.MainForm then
       Sync(procedure
       begin
-        View.Release;
+//        View.Action
+//        View.Release;
       end)
     else
     begin

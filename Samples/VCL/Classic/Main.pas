@@ -3,8 +3,23 @@ unit Main;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, TurboUpdate.Types;
+  System.Classes,
+  System.SysUtils,
+  System.UITypes,
+  System.Variants,
+
+  TurboUpdate,
+  TurboUpdate.Interfaces,
+  TurboUpdate.Types,
+
+  Vcl.Controls,
+  Vcl.Dialogs,
+  Vcl.Forms,
+  Vcl.Graphics,
+  Vcl.StdCtrls,
+
+  Winapi.Messages,
+  Winapi.Windows;
 
 type
   TFormMain = class(TForm)
@@ -15,10 +30,10 @@ type
     procedure ButtonCheckUpdateOldClick(Sender: TObject);
     procedure ButtonCheckUpdateCurClick(Sender: TObject);
     procedure ButtonCheckUpdateNewClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
-    procedure Check(Version: TFileVersion);
+    FTurboUpdate : iTurboUpdate;
   public
-    { Public declarations }
   end;
 
 var
@@ -26,40 +41,44 @@ var
 
 implementation
 
-uses
-  TurboUpdate.Check, TurboUpdate.Utils;
-
 {$R *.dfm}
 
 procedure TFormMain.ButtonCheckUpdateCurClick(Sender: TObject);
 begin
-  Check(TFileVersion.CreateForFile(ParamStr(0)));
+  FTurboUpdate
+   .ExeNames(['VclApplication.exe', 'VclUpdate.exe'])
+   .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
+   .AppName('TurboUpdate.Vcl.Classic')
+   .Version(TFileVersion.CreateForFile(ParamStr(0)))
+   .Description('TurboUpdate/Vcl/Classic')
+   .UpdateVCL;
 end;
 
 procedure TFormMain.ButtonCheckUpdateNewClick(Sender: TObject);
 begin
-  Check(TFileVersion.Create('2.0.0.0'));
+  FTurboUpdate
+   .ExeNames(['VclApplication.exe', 'VclUpdate.exe'])
+   .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
+   .AppName('TurboUpdate.Vcl.Classic')
+   .Version(TFileVersion.CreateForFile('2.0.0.0'))
+   .Description('TurboUpdate/Vcl/Classic')
+   .UpdateVCL;
 end;
 
 procedure TFormMain.ButtonCheckUpdateOldClick(Sender: TObject);
 begin
-  Check(TFileVersion.Create('1.9.3.0'));
+  FTurboUpdate
+   .ExeNames(['VclApplication.exe', 'VclUpdate.exe'])
+   .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
+   .AppName('TurboUpdate.Vcl.Classic')
+   .Version(TFileVersion.CreateForFile('1.9.3.0'))
+   .Description('TurboUpdate/Vcl/Classic')
+   .UpdateVCL;
 end;
 
-procedure TFormMain.Check(Version: TFileVersion);
+procedure TFormMain.FormCreate(Sender: TObject);
 begin
-  CheckUpdate(['https://raw.githubusercontent.com/errorcalc/TurboUpdate/master/Update.ini'],
-    'TurboUpdate.Vcl.Classic', Version,
-    procedure (UpdateAviable: Boolean; Version: TFileVersion)
-    begin
-      if UpdateAviable then
-      begin
-        if MessageDlg('Update aviable, Version: ' + Version.ToString + sLineBreak + 'Update?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-          LaunchUpdateApp('VclUpdate.exe');
-      end
-      else
-        MessageDlg('Updates not found!', mtInformation, [mbYes], 0);
-    end);
+  FTurboUpdate := TTurboUpdate.New;
 end;
 
 end.

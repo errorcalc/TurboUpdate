@@ -16,18 +16,21 @@ unit TurboUpdate.FormUpdate;
 interface
 
 uses
+  HDMessageDlg,
+
   ES.BaseControls,
   ES.Images,
   ES.Indicators,
   ES.Layouts,
 
-  HDMessageDlg,
   HDMessageDlg.Interfaces,
 
   System.Classes,
   System.SysUtils,
   System.Variants,
 
+  TurboUpdate.Consts,
+  TurboUpdate.Interfaces,
   TurboUpdate.Types,
 
   Vcl.Controls,
@@ -59,6 +62,8 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     Model: IUpdateModel;
+    Msg : iHDMessageDlg;
+    FConsts : IMessageConsts;
   public
     { IUpdateView }
     procedure SetVersion(const Value: string);
@@ -80,7 +85,9 @@ implementation
 uses
   System.UITypes,
 
-  Winapi.ShellApi;{$R *.dfm}
+  Winapi.ShellApi;
+
+{$R *.dfm}
 
 { TFormUpdate }
 procedure TFormUpdate.ButtonCancelClick(Sender: TObject);
@@ -168,30 +175,27 @@ function TFormUpdate.ShowErrorMessage(Message: string): Boolean;
 var
  Msg : iHDMessageDlg;
 begin
-  Msg := THDMessageDlg.New;
+  FConsts := TFactoryConsts.New.Consts;
   Result :=
    Msg
-    .MsgTitle('Update')
+    .MsgTitle(FConsts.MsgTitle)
     .MsgQuestion('')
     .MsgBody(Message)
     .MsgIcon(iError)
     .MsgType(tQuestion)
     .DisplayQuestion;  // add by Renato Trevisan 12-1-24
-//  Result := MessageDlg(Message, mtError, [mbYes, mbNo], 0) = mrYes;
 end;
 procedure TFormUpdate.ShowMessage(Message: string);
-var
- Msg : iHDMessageDlg;
 begin
+  FConsts := TFactoryConsts.New.Consts;
   Msg := THDMessageDlg.New;
    Msg
-    .MsgTitle('Update')
+    .MsgTitle(FConsts.MsgTitle)
     .MsgQuestion('')
     .MsgBody(Message)
-    .MsgIcon(iError)
+    .MsgIcon(iMessage)
     .MsgType(tOK)
     .DisplayMessage; // add by Renato Trevisan 12-1-24
-//  MessageDlg(Message, mtInformation, [mbOk], 0);
 end;
 procedure TFormUpdate.ViewClose;
 begin

@@ -1,10 +1,25 @@
 unit Main;
-
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, TurboUpdate.Types;
+  TurboUpdate,
+
+  FMX.Controls,
+  FMX.Controls.Presentation,
+  FMX.Dialogs,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.StdCtrls,
+  FMX.Types,
+
+  System.Classes,
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Variants,
+
+  TurboUpdate.Interfaces,
+  TurboUpdate.Types;
 
 type
   TFormMain = class(TForm)
@@ -15,68 +30,52 @@ type
     procedure ButtonCheckUpdateCurClick(Sender: TObject);
     procedure ButtonCheckUpdateNewClick(Sender: TObject);
     procedure ButtonCheckUpdateOldClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
-    { Private declarations }
-    procedure Check(Version: TFileVersion);
+    FTurboUpdate : iTurboUpdate;
   public
-    { Public declarations }
   end;
-
 var
   FormMain: TFormMain;
 
 implementation
-
 {$R *.fmx}
 
-uses
-  TurboUpdate.Check, TurboUpdate.Utils, TurboUpdate.UpdateFMX;
-
 { TFormMain }
-
 procedure TFormMain.ButtonCheckUpdateCurClick(Sender: TObject);
 begin
-  Check(TFileVersion.CreateForFile(ParamStr(0)));
+  FTurboUpdate
+   .ExeNames(['FmxApplication.exe'])
+   .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
+   .AppName('TurboUpdate.Fmx.Standalone')
+   .Description('TurboUpdate/Fmx/Standalone')
+   .Version(TFileVersion.CreateForFile(ParamStr(0)))
+   .UpdateFMX;
 end;
-
 procedure TFormMain.ButtonCheckUpdateNewClick(Sender: TObject);
 begin
-  Check(TFileVersion.Create('2.0.0.0'));
+  FTurboUpdate
+   .ExeNames(['FmxApplication.exe'])
+   .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
+   .AppName('TurboUpdate.Fmx.Standalone')
+   .Description('TurboUpdate/Fmx/Standalone')
+   .Version(TFileVersion.Create('2.0.0.0'))
+   .UpdateFMX;
 end;
-
 procedure TFormMain.ButtonCheckUpdateOldClick(Sender: TObject);
 begin
-  Check(TFileVersion.Create('1.9.3.0'));
+  FTurboUpdate
+   .ExeNames(['FmxApplication.exe'])
+   .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
+   .AppName('TurboUpdate.Fmx.Standalone')
+   .Description('TurboUpdate/Fmx/Standalone')
+   .Version(TFileVersion.Create('1.9.3.0'))
+   .UpdateFMX;
 end;
 
-procedure TFormMain.Check(Version: TFileVersion);
-const
-  AppName = 'TurboUpdate.Fmx.Standalone';
-var
-  Info: TUpdateInfo;
-  Urls: TStringArray;
+procedure TFormMain.FormCreate(Sender: TObject);
 begin
-  Urls := ['https://raw.githubusercontent.com/errorcalc/TurboUpdate/master/Update.ini'];
-
-  CheckUpdate(Urls, AppName, Version,
-    procedure (UpdateAviable: Boolean; Version: TFileVersion)
-    begin
-      if UpdateAviable then
-      begin
-        if MessageDlg('Update aviable, Version: ' + Version.ToString + sLineBreak + 'Update?', TMsgDlgType.mtConfirmation,
-          [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0) = mrYes then
-        begin
-          Info := Default(TUpdateInfo);
-          Info.Urls := Urls;
-          Info.ExeNames := ['FmxApplication.exe'];
-          Info.Name := AppName;
-          Info.Description := 'TurboUpdate/Fmx/Standalone';
-          TurboUpdate.UpdateFMX.Update(Info);
-        end;
-      end
-      else
-        MessageDlg('Updates not found!', TMsgDlgType.mtInformation, [TMsgDlgBtn.mbYes], 0);
-    end);
+  FTurboUpdate := TTurboUpdate.New;
 end;
 
 end.

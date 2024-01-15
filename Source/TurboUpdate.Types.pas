@@ -12,59 +12,23 @@
 { You can order developing vcl/fmx components, please submit requests to mail. }
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
+{                                                                              }
+{Modidicado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
+{Modified by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate   }
+{******************************************************************************}
 unit TurboUpdate.Types;
 {$SCOPEDENUMS ON}
+
 interface
+
 uses
-  System.Classes, System.SysUtils;
+  System.Classes,
+  System.SysUtils;
+
 type
+
   TUpdateState = (Waiting, Downloading, Unpacking, Done);
   TStringArray = array of string;
-    IMessageConsts = interface //Adicionado por Renato Trevisan 02/01/24
-    ['{CCEA3692-C90A-48DA-801E-0543F49C6CBC}']
-    function WaitingStatus : string;
-    function DownloadingStatus : string;
-    function RenamingFilesStatus : string;
-    function UnpackingStatus : string;
-    function DoneStatus : string;
-    function ConnectionError : string;
-    function DownloadError : string;
-    function CorruptedFilesError : string;
-    function DoneMessage : string;
-    function DoneMessageRestart : string;
-    function Version : string;
-  end;
-  IFactoryConsts = interface //Adicionado por Renato Trevisan 02/01/24
-    ['{3DC0100B-59AB-4D25-B9F4-BA1E3945E664}']
-    function Consts : IMessageConsts;
-  end;
-  IUpdateModel = interface
-  ['{CEAD1A55-AF8B-4003-B1C2-84D7371D2CE1}']
-    procedure Cancel;
-  end;
-
-  IUpdateView = interface
-  ['{D7D57022-217A-4D79-944F-6D3112D674D9}']
-    procedure SetVersion(const Value: string);
-    procedure SetDescription(const Value: string);
-    procedure SetStatus(const Value: string);
-    procedure SetPngRes(const Value: string);
-    procedure SetModel(Model: IUpdateModel);
-    procedure SetUpdateState(Value: TUpdateState);
-    // routliness
-    procedure ShowMessage(Message: string);
-    function ShowErrorMessage(Message: string): Boolean;
-    procedure Progress(Progress, Length: Integer);
-    procedure Close;
-    procedure Show;
-    // properties
-    property Version: string write SetVersion;
-    property Status: string write SetStatus;
-    property Description: string write SetDescription;
-    property PngRes: string write SetPngRes;
-    property Model: IUpdateModel write SetModel;
-    property State: TUpdateState write SetUpdateState;
-  end;
 
   TFileVersion = record
   public
@@ -73,17 +37,17 @@ type
     Release: Word;
     Build: Word;
     //
-    class operator Equal(L, R: TFileVersion): Boolean;// =
-    class operator NotEqual(L, R: TFileVersion): Boolean;//	<>
-    class operator GreaterThan(L, R: TFileVersion): Boolean;// >
-    class operator GreaterThanOrEqual(L, R: TFileVersion): Boolean;// >=
-    class operator LessThan(L, R: TFileVersion): Boolean;// <
-    class operator LessThanOrEqual(L, R: TFileVersion): Boolean;// <=
+    class operator Equal(L, R: TFileVersion): Boolean; // =
+    class operator NotEqual(L, R: TFileVersion): Boolean; // <>
+    class operator GreaterThan(L, R: TFileVersion): Boolean; // >
+    class operator GreaterThanOrEqual(L, R: TFileVersion): Boolean; // >=
+    class operator LessThan(L, R: TFileVersion): Boolean; // <
+    class operator LessThanOrEqual(L, R: TFileVersion): Boolean; // <=
     //
     constructor Create(VersionStr: string);
-    {$IFDEF MSWINDOWS}
+{$IFDEF MSWINDOWS}
     constructor CreateForFile(FileName: TFileName);
-    {$ENDIF}
+{$ENDIF}
     function ToString: string;
   end;
 
@@ -99,14 +63,19 @@ type
   end;
 
 {$IFDEF MSWINDOWS}
+
 function GetFileVersion(FileName: string; out Version: TFileVersion): Boolean;
 {$ENDIF}
+
 implementation
+
 {$IFDEF MSWINDOWS}
+
 uses
   WinApi.Windows;
 {$ENDIF}
 {$IFDEF MSWINDOWS}
+
 function GetFileVersion(FileName: string; out Version: TFileVersion): Boolean;
 var
   InfoSize, Wnd: DWORD;
@@ -136,6 +105,7 @@ begin
   end;
 end;
 {$ENDIF}
+
 { TFileVersion }
 constructor TFileVersion.Create(VersionStr: string);
 var
@@ -156,54 +126,72 @@ begin
     if High(A) >= 3 then
       Build := A[3].Trim.ToInteger;
   except
-    on EConvertError do ;
+    on EConvertError do;
   end;
 end;
 {$IFDEF MSWINDOWS}
+
 constructor TFileVersion.CreateForFile(FileName: TFileName);
 begin
-  Self := Default(TFileVersion);
+  Self := Default (TFileVersion);
   GetFileVersion(FileName, Self);
 end;
 {$ENDIF}
+
 class operator TFileVersion.Equal(L, R: TFileVersion): Boolean;
 begin
-  Result := (L.Major = R.Major) and (L.Minor = R.Minor) and (L.Release = R.Release) and (L.Build = R.Build);
+  Result := (L.Major = R.Major) and (L.Minor = R.Minor) and
+    (L.Release = R.Release) and (L.Build = R.Build);
 end;
+
 class operator TFileVersion.GreaterThan(L, R: TFileVersion): Boolean;
 begin
   Result := R < L;
 end;
+
 class operator TFileVersion.GreaterThanOrEqual(L, R: TFileVersion): Boolean;
 begin
   Result := R <= L;
 end;
+
 class operator TFileVersion.LessThan(L, R: TFileVersion): Boolean;
 begin
   Result := False;
   // Major
-  if L.Major > R.Major then Exit(False);
-  if L.Major < R.Major then Exit(True);
+  if L.Major > R.Major then
+    Exit(False);
+  if L.Major < R.Major then
+    Exit(True);
   // Minor
-  if L.Minor > R.Minor then Exit(False);
-  if L.Minor < R.Minor then Exit(True);
+  if L.Minor > R.Minor then
+    Exit(False);
+  if L.Minor < R.Minor then
+    Exit(True);
   // Release
-  if L.Release > R.Release then Exit(False);
-  if L.Release < R.Release then Exit(True);
+  if L.Release > R.Release then
+    Exit(False);
+  if L.Release < R.Release then
+    Exit(True);
   // Build
-  if L.Build > R.Build then Exit(False);
-  if L.Build < R.Build then Exit(True);
+  if L.Build > R.Build then
+    Exit(False);
+  if L.Build < R.Build then
+    Exit(True);
 end;
+
 class operator TFileVersion.LessThanOrEqual(L, R: TFileVersion): Boolean;
 begin
   Result := (L < R) or (L = R);
 end;
+
 class operator TFileVersion.NotEqual(L, R: TFileVersion): Boolean;
 begin
-  Result := not (L = R);
+  Result := not(L = R);
 end;
+
 function TFileVersion.ToString: string;
 begin
   Result := Format('%d.%d.%d.%d', [Major, Minor, Release, Build]);
 end;
+
 end.

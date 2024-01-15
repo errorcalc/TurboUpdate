@@ -14,7 +14,10 @@
 {******************************************************************************}
 unit TurboUpdate.FormUpdateFmx;
 interface
+
 uses
+  HDMessageDlg,
+
   FMX.Controls,
   FMX.Controls.Presentation,
   FMX.Dialogs,
@@ -24,15 +27,19 @@ uses
   FMX.Objects,
   FMX.StdCtrls,
   FMX.Types,
+
   HDMessageDlg.Interfaces,
-  HDMessageDlg,
+
   System.Classes,
   System.SysUtils,
   System.Types,
   System.UITypes,
   System.Variants,
 
+  TurboUpdate.Consts,
+  TurboUpdate.Interfaces,
   TurboUpdate.Types;
+
 type
   TFormUpdateFmx = class(TForm, IUpdateView)
     LayoutMain: TLayout;
@@ -55,6 +62,8 @@ type
     procedure LabelTurboUpdateClick(Sender: TObject);
   private
     Model: IUpdateModel;
+    Msg : iHDMessageDlg;
+    FConsts : IMessageConsts;
   public
     { IUpdateView }
     procedure SetVersion(const Value: string);
@@ -157,32 +166,28 @@ begin
   inherited Show;
 end;
 function TFormUpdateFmx.ShowErrorMessage(Message: string): Boolean;
-var
- Msg : iHDMessageDlg;
 begin
+  FConsts := TFactoryConsts.New.Consts;
   Msg := THDMessageDlg.New;
   Result :=
    Msg
-    .MsgTitle('Update')
+    .MsgTitle(FConsts.MsgTitle)
     .MsgQuestion('')
     .MsgBody(Message)
     .MsgIcon(iError)
     .MsgType(tQuestion)
     .DisplayQuestion;  // add by Renato Trevisan 12-1-24
-//  Result := MessageDlg(Message, TMsgDlgType.mtError, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0) = mrYes;
 end;
 procedure TFormUpdateFmx.ShowMessage(Message: string);
-var
- Msg : iHDMessageDlg;
 begin
+  FConsts := TFactoryConsts.New.Consts;
   Msg := THDMessageDlg.New;
    Msg
-    .MsgTitle('Update')
+    .MsgTitle(FConsts.MsgTitle)
     .MsgQuestion('')
     .MsgBody(Message)
-    .MsgIcon(iError)
+    .MsgIcon(iMessage)
     .MsgType(tOK)
     .DisplayMessage; // add by Renato Trevisan 12-1-24
-//  MessageDlg(Message, TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], 0);
 end;
 end.

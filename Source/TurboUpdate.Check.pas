@@ -20,10 +20,14 @@ uses
   TurboUpdate.Types;
 
 type
-  TUpdateCheckResultProc = reference to procedure (UpdateAviable: Boolean; Version: TFileVersion);
+  TUpdateCheckResultProc = reference to procedure(UpdateAviable: Boolean; Version: TFileVersion);
 
-procedure CheckUpdate(Urls: TStringArray; AppName: string; UpdateCheckResultProc: TUpdateCheckResultProc); overload;
-procedure CheckUpdate(Urls: TStringArray; AppName: string; Version: TFileVersion; UpdateCheckResultProc: TUpdateCheckResultProc); overload;
+procedure CheckUpdate(Urls: TStringArray; AppName: string;
+  UpdateCheckResultProc: TUpdateCheckResultProc); overload;
+
+procedure CheckUpdate(Urls: TStringArray; AppName: string;
+  Version: TFileVersion;
+  UpdateCheckResultProc: TUpdateCheckResultProc); overload;
 
 implementation
 
@@ -33,43 +37,46 @@ uses
 var
   IsChecking: Boolean = False;
 
-procedure CheckUpdate(Urls: TStringArray; AppName: string; Version: TFileVersion; UpdateCheckResultProc: TUpdateCheckResultProc);
+procedure CheckUpdate(Urls: TStringArray; AppName: string;
+  Version: TFileVersion; UpdateCheckResultProc: TUpdateCheckResultProc);
 begin
   if IsChecking then
     Exit;
 
   TThread.CreateAnonymousThread(
-  procedure
-  var
-    Url: string;
-    UpdateVersion: TFileVersion;
-  begin
-    IsChecking := True;
-    try
-      for Url in Urls do
-      begin
-        if GetUpdateVersion(Url, AppName, UpdateVersion) then
+    procedure
+    var
+      Url: string;
+      UpdateVersion: TFileVersion;
+    begin
+     IsChecking := True;
+      try
+        for Url in Urls do
         begin
-          TThread.Synchronize(nil,
-          procedure
+          if GetUpdateVersion(Url, AppName, UpdateVersion) then
           begin
-            if UpdateVersion > Version then
-              UpdateCheckResultProc(True, UpdateVersion)
-            else
-              UpdateCheckResultProc(False, UpdateVersion);
-          end);
-          break;
+            TThread.Synchronize(nil,
+              procedure
+              begin
+                if UpdateVersion > Version then
+                  UpdateCheckResultProc(True, UpdateVersion)
+                else
+                  UpdateCheckResultProc(False, UpdateVersion);
+              end);
+            break;
+          end;
         end;
+      finally
+        IsChecking := False;
       end;
-    finally
-      IsChecking := False;
-    end;
-  end).Start;
+    end).Start;
 end;
 
-procedure CheckUpdate(Urls: TStringArray; AppName: string; UpdateCheckResultProc: TUpdateCheckResultProc);
+procedure CheckUpdate(Urls: TStringArray; AppName: string;
+UpdateCheckResultProc: TUpdateCheckResultProc);
 begin
-  CheckUpdate(Urls, AppName, TFileVersion.CreateForFile(ParamStr(0)), UpdateCheckResultProc);
+  CheckUpdate(Urls, AppName, TFileVersion.CreateForFile(ParamStr(0)),
+    UpdateCheckResultProc);
 end;
 
 end.

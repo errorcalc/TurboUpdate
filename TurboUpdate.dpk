@@ -29,11 +29,17 @@ package TurboUpdate;
 
 requires
   rtl,
-  dbrtl;
+  dbrtl,
+  vclimg,
+  vcl,
+  vclwinx,
+  fmx,
+  EsVclComponents,
+  EsVclCore,
+  HDMessageDlg;
 
 contains
   TurboUpdate.Consts in 'Source\TurboUpdate.Consts.pas',
-  TurboUpdate.Download in 'Source\TurboUpdate.Download.pas',
   TurboUpdate.Internet in 'Source\TurboUpdate.Internet.pas',
   TurboUpdate.Model in 'Source\TurboUpdate.Model.pas',
   TurboUpdate.Types in 'Source\TurboUpdate.Types.pas',
@@ -41,6 +47,14 @@ contains
   TurboUpdate.Utils in 'Source\TurboUpdate.Utils.pas',
   TurboUpdate.LanguagePTbr in 'Source\TurboUpdate.LanguagePTbr.pas',
   TurboUpdate.LanguageUS in 'Source\TurboUpdate.LanguageUS.pas',
-  TurboUpdate.Update.Thread in 'Source\TurboUpdate.Update.Thread.pas';
+  TurboUpdate.Update.Thread in 'Source\TurboUpdate.Update.Thread.pas',
+  TurboUpdate.Interfaces in 'Source\TurboUpdate.Interfaces.pas',
+  TurboUpdate in 'Source\TurboUpdate.pas',
+  TurboUpdate.FormUpdate in 'Source\VCL\TurboUpdate.FormUpdate.pas' {FormUpdate},
+  TurboUpdate.Update in 'Source\VCL\TurboUpdate.Update.pas',
+  TurboUpdate.VCL.Utils in 'Source\VCL\TurboUpdate.VCL.Utils.pas',
+  TurboUpdate.FMX.Utils in 'Source\FMX\TurboUpdate.FMX.Utils.pas',
+  TurboUpdate.FormUpdateFmx in 'Source\FMX\TurboUpdate.FormUpdateFmx.pas' {FormUpdateFmx},
+  TurboUpdate.UpdateFmx in 'Source\FMX\TurboUpdate.UpdateFmx.pas';
 
 end.

@@ -21,13 +21,11 @@ unit TurboUpdate.LanguageUS;
 interface
 
 uses
-  Data.DB,
-
   System.Classes,
   System.IniFiles,
   System.SysUtils,
 
-  TurboUpdate.Types;
+  TurboUpdate.Interfaces;
 
 type
   TMessageConstsUS = class(TInterfacedObject, IMessageConsts)
@@ -47,6 +45,10 @@ type
     function DoneMessage: string;
     function DoneMessageRestart : string;
     function Version: string;
+    function MsgTitle: string;
+    function MsgQuestion: string;
+    function MsgBodyLastVersion: string;
+    function MsgBodyUpdateVersion : string;
   end;
 
 implementation
@@ -95,6 +97,26 @@ end;
 function TMessageConstsUS.DownloadingStatus: string;
 begin
   Result := 'Downloading...';
+end;
+
+function TMessageConstsUS.MsgBodyLastVersion: string;
+begin
+  Result := 'System is in the latest version. ';
+end;
+
+function TMessageConstsUS.MsgBodyUpdateVersion: string;
+begin
+  Result := 'Update available. ';
+end;
+
+function TMessageConstsUS.MsgQuestion: string;
+begin
+  Result := 'Do you want to update?'
+end;
+
+function TMessageConstsUS.MsgTitle: string;
+begin
+  Result := 'System update';
 end;
 
 class function TMessageConstsUS.New: IMessageConsts;

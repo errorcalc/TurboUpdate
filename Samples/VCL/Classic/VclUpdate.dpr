@@ -1,12 +1,11 @@
-program VclUpdate;
+Program VclUpdate;
 
 uses
-  Vcl.Forms, System.SysUtils, TurboUpdate.Update, TurboUpdate.Types;
+  Vcl.Forms,
+  System.SysUtils,
+  TurboUpdate;
 
 {$R *.res}
-
-var
-  Info: TUpdateInfo;
 
 begin
   ReportMemoryLeaksOnShutdown := True;
@@ -14,12 +13,12 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
 
-  Info.Urls := ['https://raw.githubusercontent.com/errorcalc/TurboUpdate/master/Update.ini'];
-  Info.ExeNames := ['VclApplication.exe', 'VclUpdate.exe'];
-  Info.Name := 'TurboUpdate.Vcl.Classic';
-  Info.Description := 'TurboUpdate/Vcl/Classic';
-
-  Update(Info);
+  TTurboUpdate.New
+   .ExeNames(['VclApplication.exe', 'VclUpdate.exe'])
+   .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
+   .AppName('TurboUpdate.Vcl.Classic')
+   .Description('TurboUpdate/Vcl/Classic')
+   .UpdateThreadVCL;
 
   Application.Run;
 end.

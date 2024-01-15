@@ -21,13 +21,11 @@ unit TurboUpdate.LanguagePTbr;
 interface
 
 uses
-  Data.DB,
-
   System.Classes,
   System.IniFiles,
   System.SysUtils,
 
-  TurboUpdate.Types;
+  TurboUpdate.Interfaces;
 
 type
   TMessageConstsPTbr = class(TInterfacedObject, IMessageConsts)
@@ -47,6 +45,10 @@ type
     function DoneMessage: string;
     function DoneMessageRestart : string;
     function Version: string;
+    function MsgTitle: string;
+    function MsgQuestion: string;
+    function MsgBodyLastVersion: string;
+    function MsgBodyUpdateVersion : string;
   end;
 
 implementation
@@ -97,6 +99,26 @@ begin
   Result := 'Downloading...';
 end;
 
+function TMessageConstsPTbr.MsgBodyLastVersion: string;
+begin
+  Result := 'Sistema está na ultima versão. ';
+end;
+
+function TMessageConstsPTbr.MsgBodyUpdateVersion: string;
+begin
+  Result := 'Atualização disponível. ';
+end;
+
+function TMessageConstsPTbr.MsgQuestion: string;
+begin
+  Result := 'Deseja atualizar?'
+end;
+
+function TMessageConstsPTbr.MsgTitle: string;
+begin
+  Result := 'Atualização do sistema';
+end;
+
 class function TMessageConstsPTbr.New: IMessageConsts;
 begin
   Result := Self.Create;
@@ -114,7 +136,7 @@ end;
 
 function TMessageConstsPTbr.Version: string;
 begin
-  Result := 'Verssão %s';
+  Result := 'Versão %s';
 end;
 
 function TMessageConstsPTbr.WaitingStatus: string;

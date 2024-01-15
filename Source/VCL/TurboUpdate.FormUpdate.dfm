@@ -4,8 +4,8 @@ object FormUpdate: TFormUpdate
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Update'
-  ClientHeight = 215
-  ClientWidth = 480
+  ClientHeight = 214
+  ClientWidth = 476
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,7 +19,7 @@ object FormUpdate: TFormUpdate
     Left = 8
     Top = 8
     Width = 130
-    Height = 130
+    Height = 129
     Margins.Left = 8
     Margins.Top = 8
     Margins.Right = 8
@@ -122,13 +122,13 @@ object FormUpdate: TFormUpdate
       426082}
     Stretch = Mixed
     TabOrder = 0
-    ExplicitHeight = 129
+    ExplicitHeight = 128
   end
   object LayoutFotter: TEsLayout
     AlignWithMargins = True
     Left = 8
-    Top = 182
-    Width = 464
+    Top = 181
+    Width = 460
     Height = 25
     Margins.Left = 8
     Margins.Top = 8
@@ -136,10 +136,10 @@ object FormUpdate: TFormUpdate
     Margins.Bottom = 8
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 181
-    ExplicitWidth = 460
+    ExplicitTop = 180
+    ExplicitWidth = 456
     object ButtonCancel: TButton
-      Left = 389
+      Left = 385
       Top = 0
       Width = 75
       Height = 25
@@ -147,7 +147,7 @@ object FormUpdate: TFormUpdate
       Caption = 'Cancel'
       TabOrder = 0
       OnClick = ButtonCancelClick
-      ExplicitLeft = 385
+      ExplicitLeft = 381
     end
     object LinkLabelTurboUpdate: TLinkLabel
       Left = 1
@@ -166,8 +166,8 @@ object FormUpdate: TFormUpdate
     AlignWithMargins = True
     Left = 146
     Top = 8
-    Width = 326
-    Height = 130
+    Width = 322
+    Height = 129
     Margins.Left = 0
     Margins.Top = 8
     Margins.Right = 8
@@ -175,13 +175,13 @@ object FormUpdate: TFormUpdate
     Align = alClient
     ParentBufferedChildren = False
     TabOrder = 2
-    ExplicitWidth = 322
-    ExplicitHeight = 129
+    ExplicitWidth = 318
+    ExplicitHeight = 128
     object LabelDescription: TLabel
       Left = 0
       Top = 0
-      Width = 326
-      Height = 130
+      Width = 322
+      Height = 129
       Align = alClient
       Caption = 'Update Description'
       Font.Charset = DEFAULT_CHARSET
@@ -198,8 +198,8 @@ object FormUpdate: TFormUpdate
     object LabelStatus: TLabel
       Left = 0
       Top = 0
-      Width = 326
-      Height = 130
+      Width = 322
+      Height = 129
       Align = alClient
       AutoSize = False
       Caption = 'Status'
@@ -212,12 +212,14 @@ object FormUpdate: TFormUpdate
       Layout = tlBottom
       ExplicitLeft = 3
       ExplicitTop = 16
+      ExplicitWidth = 326
+      ExplicitHeight = 130
     end
     object LabelVersion: TLabel
       Left = 0
       Top = 0
-      Width = 326
-      Height = 130
+      Width = 322
+      Height = 129
       Align = alClient
       Alignment = taRightJustify
       Caption = 'Version'
@@ -236,8 +238,8 @@ object FormUpdate: TFormUpdate
   object LayoutProgress: TEsLayout
     AlignWithMargins = True
     Left = 8
-    Top = 146
-    Width = 464
+    Top = 145
+    Width = 460
     Height = 19
     Margins.Left = 8
     Margins.Top = 0
@@ -249,12 +251,12 @@ object FormUpdate: TFormUpdate
     ParentBackground = False
     ParentColor = False
     TabOrder = 3
-    ExplicitTop = 145
-    ExplicitWidth = 460
+    ExplicitTop = 144
+    ExplicitWidth = 456
     object ProgressBar: TEsActivityBar
       Left = 1
       Top = 1
-      Width = 462
+      Width = 458
       Height = 17
       Align = alClient
       Max = 1000
@@ -271,14 +273,14 @@ object FormUpdate: TFormUpdate
       ParentBackground = False
       ParentColor = False
       TabOrder = 0
-      ExplicitWidth = 458
+      ExplicitWidth = 454
     end
   end
   object LayoutFotterSeparator: TEsLayout
     AlignWithMargins = True
     Left = 8
-    Top = 173
-    Width = 464
+    Top = 172
+    Width = 460
     Height = 1
     Margins.Left = 8
     Margins.Top = 0
@@ -289,7 +291,7 @@ object FormUpdate: TFormUpdate
     ParentBackground = False
     ParentColor = False
     TabOrder = 4
-    ExplicitTop = 172
-    ExplicitWidth = 460
+    ExplicitTop = 171
+    ExplicitWidth = 456
   end
 end

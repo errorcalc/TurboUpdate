@@ -30,12 +30,11 @@ package TurboUpdateFMX;
 requires
   rtl,
   fmx,
-  TurboUpdate,
-  HDMessageDlg;
+  dbrtl;
 
 contains
-  TurboUpdate.UpdateFmx in 'Source\FMX\TurboUpdate.UpdateFmx.pas',
-  TurboUpdate.FormUpdateFmx in 'Source\FMX\TurboUpdate.FormUpdateFmx.pas',
-  TurboUpdate.FMX.Utils in 'Source\FMX\TurboUpdate.FMX.Utils.pas';
+  TurboUpdate.FMX.Utils in 'Source\FMX\TurboUpdate.FMX.Utils.pas',
+  TurboUpdate.FormUpdateFmx in 'Source\FMX\TurboUpdate.FormUpdateFmx.pas' {FormUpdateFmx},
+  TurboUpdate.UpdateFmx in 'Source\FMX\TurboUpdate.UpdateFmx.pas';
 
 end.

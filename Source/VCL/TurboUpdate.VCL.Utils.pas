@@ -24,17 +24,17 @@ uses
   TurboUpdate.Types,
   TurboUpdate.Update;
 
-procedure Update(const UpdateInfo: TUpdateInfo);
-procedure UpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
+procedure VCLUpdate(const UpdateInfo: TUpdateInfo);
+procedure VCLUpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
 
 implementation
 
-procedure Update(const UpdateInfo: TUpdateInfo);
+procedure VCLUpdate(const UpdateInfo: TUpdateInfo);
 begin
   TVclUpdateThread.Create(UpdateInfo).Update;
 end;
 
-procedure UpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
+procedure VCLUpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
 begin
   TVclUpdateThread.Create(UpdateInfo).UpdateFromFile(FileName);
 end;

@@ -21,6 +21,7 @@ uses
   System.SysUtils,
 
   TurboUpdate.FormUpdate,
+  TurboUpdate.Interfaces,
   TurboUpdate.Model,
   TurboUpdate.Types,
   TurboUpdate.Update.Thread,

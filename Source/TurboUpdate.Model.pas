@@ -25,8 +25,8 @@ uses
   System.Zip,
 
   TurboUpdate.Consts,
-  TurboUpdate.Download,
   TurboUpdate.Internet,
+  TurboUpdate.Interfaces,
   TurboUpdate.Types,
   TurboUpdate.Utils;
 
@@ -164,6 +164,7 @@ begin
     begin
       View.State := TUpdateState.Done;
       View.Status := FConsts.Consts.DoneStatus;
+      View.ShowMessage(FConsts.Consts.DoneMessage);
       TurboUpdate.Utils.LaunchUpdateApp(ExeNames[0], True); // open new update by application or app in inno setup //add by Francisco Aurino in 17/12/2022 16:25:43
     end);
 end;

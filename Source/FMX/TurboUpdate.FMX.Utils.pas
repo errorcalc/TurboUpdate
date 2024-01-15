@@ -24,17 +24,17 @@ uses
   TurboUpdate.Types,
   TurboUpdate.UpdateFmx;
 
-procedure Update(const UpdateInfo: TUpdateInfo);
-procedure UpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
+procedure FMXUpdate(const UpdateInfo: TUpdateInfo);
+procedure FMXUpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
 
 implementation
 
-procedure Update(const UpdateInfo: TUpdateInfo);
+procedure FMXUpdate(const UpdateInfo: TUpdateInfo);
 begin
   TFmxUpdateThread.Create(UpdateInfo).Update;
 end;
 
-procedure UpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
+procedure FMXUpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
 begin
   TFmxUpdateThread.Create(UpdateInfo).UpdateFromFile(FileName);
 end;
