@@ -49,8 +49,8 @@ begin
     .RootPath('Opcional')
     .PngRes('Opcional: Resolução do PNG')
     .Version(TFileVersion.CreateForFile(verão do app. EX: pode ser o executável ou número da versão, '2.0.0.0'))
-    .ExecUpdateApp('App a ser executado para atualizar o sistema')
-    .KillTaskApp('App a ser fechado antes de continuar com a atualização')
+    .ExecUpdateApp('App a ser executado para atualizar o sistema. Default: Update.exe')
+    .KillTaskApp('App a ser fechado antes de continuar com a atualização. Ex: Update.exe')
     .UpdateThreadVCL // Usar quando for um app de linha de comando - VCL
     .UpdateThreadFMX // Usar quando for um app de linha de comando - FMX
     .Standalone // Usar quando for chamar um app externo para fazer a atualização
