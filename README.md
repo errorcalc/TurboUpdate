@@ -29,14 +29,14 @@ Adicione as seguintes pastas ao seu projeto, em *Project > Options > Delphi Comp
 ## Como usar
   * Existem algumas formas diferentes de usar o TurboUpdate. Você pode configurar ele para VCL ou FMX ou executar ele em Standalone.
 
-#### **Uses necessárias**
+#### **Uses necessárias para a maioria do uso**
 
 ```delphi
 uses 
   TurboUpdate.Interfaces, 
   TurboUpdate;
 ``` 
-## **Tipos de Uso**
+## **Tipos de Usos**
 ### Parâmetros a serem passados
 ```delphi
 begin
@@ -102,15 +102,20 @@ begin
    .UpdateVCL;
 end;
 ```
-#### Aplicativo de console (Ainda está em teste, pode apresentar bug visual)
-```delphi
-  FTurboUpdate := TTurboUpdate.New;
-  FTurboUpdate 
+#### Apenas um executável sem tela
+##### Abrir View Source (CTRL+V) do projeto e add:
+```delphi  
+uses 
+  TurboUpdate;
+begin    
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TTurboUpdate.New
    .ExeNames(['VclApplication.exe'])
    .Urls(['https://raw.githubusercontent.com/TurboUpdate/master/Update.ini'])
    .AppName('TurboUpdate.Vcl.Classic')
    .Description('TurboUpdate Atualizações...')
    .UpdateThreadVCL;
   Application.Run;
-  ReadLn;
+end.  
 ```
