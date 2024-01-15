@@ -252,7 +252,6 @@ begin
   FUpdateInfo.Name := FAppName;
   FUpdateInfo.Description := FDescription;
   VCLUpdate(FUpdateInfo);
-
 end;
 
 procedure TTurboUpdate.UpdateVCL;
