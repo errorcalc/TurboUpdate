@@ -165,10 +165,10 @@ end;
 procedure TFormUpdate.ViewShow;
 begin
   if Application.MainForm <> Self then
-  begin
-    Self.FormStyle := fsStayOnTop;
+   begin
     Self.Position := poScreenCenter;  // Add by Renato Trevisan
-  end;
+    Self.FormStyle := fsStayOnTop;
+   end;
   inherited Show;
 end;
 function TFormUpdate.ShowErrorMessage(Message: string): Boolean;

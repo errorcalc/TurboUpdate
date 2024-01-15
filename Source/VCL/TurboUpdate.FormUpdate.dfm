@@ -2,16 +2,17 @@ object FormUpdate: TFormUpdate
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
-  BorderStyle = bsSingle
+  BorderStyle = bsNone
   Caption = 'Update'
-  ClientHeight = 214
-  ClientWidth = 476
+  ClientHeight = 252
+  ClientWidth = 488
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poScreenCenter
   OnClose = FormClose
   TextHeight = 15
   object Image: TEsImageControl
@@ -19,7 +20,7 @@ object FormUpdate: TFormUpdate
     Left = 8
     Top = 8
     Width = 130
-    Height = 129
+    Height = 167
     Margins.Left = 8
     Margins.Top = 8
     Margins.Right = 8
@@ -127,8 +128,8 @@ object FormUpdate: TFormUpdate
   object LayoutFotter: TEsLayout
     AlignWithMargins = True
     Left = 8
-    Top = 181
-    Width = 460
+    Top = 219
+    Width = 472
     Height = 25
     Margins.Left = 8
     Margins.Top = 8
@@ -139,7 +140,7 @@ object FormUpdate: TFormUpdate
     ExplicitTop = 180
     ExplicitWidth = 456
     object ButtonCancel: TButton
-      Left = 385
+      Left = 397
       Top = 0
       Width = 75
       Height = 25
@@ -166,8 +167,8 @@ object FormUpdate: TFormUpdate
     AlignWithMargins = True
     Left = 146
     Top = 8
-    Width = 322
-    Height = 129
+    Width = 334
+    Height = 167
     Margins.Left = 0
     Margins.Top = 8
     Margins.Right = 8
@@ -180,8 +181,8 @@ object FormUpdate: TFormUpdate
     object LabelDescription: TLabel
       Left = 0
       Top = 0
-      Width = 322
-      Height = 129
+      Width = 334
+      Height = 167
       Align = alClient
       Caption = 'Update Description'
       Font.Charset = DEFAULT_CHARSET
@@ -198,8 +199,8 @@ object FormUpdate: TFormUpdate
     object LabelStatus: TLabel
       Left = 0
       Top = 0
-      Width = 322
-      Height = 129
+      Width = 334
+      Height = 167
       Align = alClient
       AutoSize = False
       Caption = 'Status'
@@ -218,8 +219,8 @@ object FormUpdate: TFormUpdate
     object LabelVersion: TLabel
       Left = 0
       Top = 0
-      Width = 322
-      Height = 129
+      Width = 334
+      Height = 167
       Align = alClient
       Alignment = taRightJustify
       Caption = 'Version'
@@ -230,7 +231,7 @@ object FormUpdate: TFormUpdate
       Font.Style = []
       ParentFont = False
       Layout = tlBottom
-      ExplicitLeft = 288
+      ExplicitLeft = 284
       ExplicitWidth = 38
       ExplicitHeight = 15
     end
@@ -238,8 +239,8 @@ object FormUpdate: TFormUpdate
   object LayoutProgress: TEsLayout
     AlignWithMargins = True
     Left = 8
-    Top = 145
-    Width = 460
+    Top = 183
+    Width = 472
     Height = 19
     Margins.Left = 8
     Margins.Top = 0
@@ -256,7 +257,7 @@ object FormUpdate: TFormUpdate
     object ProgressBar: TEsActivityBar
       Left = 1
       Top = 1
-      Width = 458
+      Width = 470
       Height = 17
       Align = alClient
       Max = 1000
@@ -279,8 +280,8 @@ object FormUpdate: TFormUpdate
   object LayoutFotterSeparator: TEsLayout
     AlignWithMargins = True
     Left = 8
-    Top = 172
-    Width = 460
+    Top = 210
+    Width = 472
     Height = 1
     Margins.Left = 8
     Margins.Top = 0

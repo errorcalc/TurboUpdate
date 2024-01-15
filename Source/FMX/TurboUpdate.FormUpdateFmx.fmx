@@ -2,10 +2,11 @@ object FormUpdateFmx: TFormUpdateFmx
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
-  BorderStyle = Single
+  BorderStyle = None
   Caption = 'Update'
   ClientHeight = 215
   ClientWidth = 480
+  Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]

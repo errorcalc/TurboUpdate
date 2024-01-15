@@ -91,11 +91,13 @@ begin
      .DisplayQuestion
    then
     begin
-     FUpdateInfo := Default(TUpdateInfo);
-     FUpdateInfo.Urls := FUrls;
-     FUpdateInfo.ExeNames := FExeNames;
-     FUpdateInfo.Name := FAppName;
+     FUpdateInfo             := Default(TUpdateInfo);
+     FUpdateInfo.Urls        := FUrls;
+     FUpdateInfo.ExeNames    := FExeNames;
+     FUpdateInfo.Name        := FAppName;
      FUpdateInfo.Description := FDescription;
+     FUpdateInfo.RootPath    := FRootPath;
+     FUpdateInfo.PngRes      := FPngRes;
      TurboUpdate.FMX.Utils.FMXUpdate(FUpdateInfo);
     end;
   end else
@@ -147,11 +149,13 @@ begin
      .DisplayQuestion
    then
     begin
-     FUpdateInfo := Default(TUpdateInfo);
-     FUpdateInfo.Urls := FUrls;
-     FUpdateInfo.ExeNames := FExeNames;
-     FUpdateInfo.Name := FAppName;
+     FUpdateInfo             := Default(TUpdateInfo);
+     FUpdateInfo.Urls        := FUrls;
+     FUpdateInfo.ExeNames    := FExeNames;
+     FUpdateInfo.Name        := FAppName;
      FUpdateInfo.Description := FDescription;
+     FUpdateInfo.RootPath    := FRootPath;
+     FUpdateInfo.PngRes      := FPngRes;
      TurboUpdate.VCL.Utils.VCLUpdate(FUpdateInfo);
     end;
   end else
