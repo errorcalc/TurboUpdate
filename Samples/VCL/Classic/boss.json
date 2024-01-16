@@ -1,0 +1,11 @@
+{
+	"name": "Classic",
+	"description": "",
+	"version": "1.0.0",
+	"homepage": "",
+	"mainsrc": "./src",
+	"projects": [],
+	"dependencies": {
+		"github.com/rtrevisan20/hdmessagedlg": "^1.0.0"
+	}
+}

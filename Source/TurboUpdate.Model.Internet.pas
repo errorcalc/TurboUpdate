@@ -12,12 +12,17 @@
 { You can order developing vcl/fmx components, please submit requests to mail. }
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
-unit TurboUpdate.Internet;
+unit TurboUpdate.Model.Internet;
 
 interface
 
 uses
-  System.Net.UrlClient, TurboUpdate.Types;
+  System.Net.HttpClient,
+  System.IniFiles,
+  System.Classes,
+  System.SysUtils,
+  System.Net.UrlClient,
+  TurboUpdate.Model.Types;
 
 function GetUpdateUrl(IniFileUrl: string; Name: string): string; overload;
 function GetUpdateVersion(IniFileUrl: string; Name: string; out Version: TFileVersion): Boolean; overload;
@@ -33,9 +38,6 @@ var
   ProxySettings: TProxySettings;
 
 implementation
-
-uses
-  System.Net.HttpClient, System.IniFiles, System.Classes, System.SysUtils;
 
 function GetStream(Url: string): TStream;
 var

@@ -9,6 +9,7 @@ object FormMain: TFormMain
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
   DesignerMasterStyle = 0
   object ButtonCheckUpdateOld: TButton
     Position.X = 8.000000000000000000
@@ -47,5 +48,6 @@ object FormMain: TFormMain
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
     Text = 'On GitHub - version 2.0.0.0'
+    TabOrder = 3
   end
 end

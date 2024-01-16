@@ -64,3 +64,14 @@ __recovery/
 
 # Castalia statistics file (since XE7 Castalia is distributed with Delphi)
 *.stat
+
+# Boss and System folders
+Project/modules/
+Source/FMX/Temp/
+Source/VCL/Temp/
+Samples/FMX/modules/
+Samples/FMX/Temp/
+Samples/VCL/Classic/modules/
+Samples/VCL/Classic/Temp/
+Samples/VCL/Standalone/modules/
+Samples/VCL/Standalone/Temp/
