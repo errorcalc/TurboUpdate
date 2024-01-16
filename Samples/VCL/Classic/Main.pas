@@ -10,7 +10,7 @@ uses
 
   TurboUpdate,
   TurboUpdate.Interfaces,
-  TurboUpdate.Types,
+  TurboUpdate.Model.Types,
 
   Vcl.Controls,
   Vcl.Dialogs,

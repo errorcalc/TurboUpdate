@@ -18,8 +18,9 @@ uses
   System.UITypes,
   System.Variants,
 
+  TurboUpdate.Model.Interfaces,
   TurboUpdate.Interfaces,
-  TurboUpdate.Types;
+  TurboUpdate.Model.Types;
 
 type
   TFormMain = class(TForm)

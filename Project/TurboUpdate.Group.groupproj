@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{7341E00B-6427-4EFA-A56B-77CA456D99A4}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="TurboUpdateModel.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Source\FMX\TurboUpdateFMX.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Source\VCL\TurboUpdateVCL.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TurboUpdateCore.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TurboUpdateModel">
+        <MSBuild Projects="TurboUpdateModel.dproj"/>
+    </Target>
+    <Target Name="TurboUpdateModel:Clean">
+        <MSBuild Projects="TurboUpdateModel.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TurboUpdateModel:Make">
+        <MSBuild Projects="TurboUpdateModel.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TurboUpdateFMX">
+        <MSBuild Projects="..\Source\FMX\TurboUpdateFMX.dproj"/>
+    </Target>
+    <Target Name="TurboUpdateFMX:Clean">
+        <MSBuild Projects="..\Source\FMX\TurboUpdateFMX.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TurboUpdateFMX:Make">
+        <MSBuild Projects="..\Source\FMX\TurboUpdateFMX.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TurboUpdateVCL">
+        <MSBuild Projects="..\Source\VCL\TurboUpdateVCL.dproj"/>
+    </Target>
+    <Target Name="TurboUpdateVCL:Clean">
+        <MSBuild Projects="..\Source\VCL\TurboUpdateVCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TurboUpdateVCL:Make">
+        <MSBuild Projects="..\Source\VCL\TurboUpdateVCL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TurboUpdateCore">
+        <MSBuild Projects="TurboUpdateCore.dproj"/>
+    </Target>
+    <Target Name="TurboUpdateCore:Clean">
+        <MSBuild Projects="TurboUpdateCore.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TurboUpdateCore:Make">
+        <MSBuild Projects="TurboUpdateCore.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TurboUpdateModel;TurboUpdateFMX;TurboUpdateVCL;TurboUpdateCore"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TurboUpdateModel:Clean;TurboUpdateFMX:Clean;TurboUpdateVCL:Clean;TurboUpdateCore:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TurboUpdateModel:Make;TurboUpdateFMX:Make;TurboUpdateVCL:Make;TurboUpdateCore:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

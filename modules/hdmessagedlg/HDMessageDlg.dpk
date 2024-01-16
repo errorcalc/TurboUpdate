@@ -1,5 +1,4 @@
-package TurboUpdate;
-
+package HDMessageDlg;
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
@@ -30,12 +29,13 @@ package TurboUpdate;
 
 requires
   rtl,
-  TurboUpdateModel,
-  TurboUpdateFMX,
-  TurboUpdateVCL;
+  fmx,
+  dbrtl;
 
 contains
-  TurboUpdate in 'Source\TurboUpdate.pas',
-  TurboUpdate.Interfaces in 'Source\TurboUpdate.Interfaces.pas';
+  HDMessageDlg.Interfaces in 'src\HDMessageDlg.Interfaces.pas',
+  HDMessageDlg.View.FMX in 'src\FMX\HDMessageDlg.View.FMX.pas' {HDMessageDlgFMX},
+  HDMessageDlg.Consts in 'src\HDMessageDlg.Consts.pas',
+  HDMessageDlg in 'src\HDMessageDlg.pas';
 
 end.

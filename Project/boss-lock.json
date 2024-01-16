@@ -1,0 +1,14 @@
+{
+	"hash": "d41d8cd98f00b204e9800998ecf8427e",
+	"updated": "2024-01-12T16:18:24.6037272-04:00",
+	"installedModules": {
+		"github.com/rtrevisan20/hdmessagedlg": {
+			"name": "hdmessagedlg",
+			"version": "1.0.0",
+			"hash": "c013533f390e6a243b224eb553c9945a",
+			"artifacts": {},
+			"failed": false,
+			"changed": false
+		}
+	}
+}

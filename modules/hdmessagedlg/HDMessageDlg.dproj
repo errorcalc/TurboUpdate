@@ -1,9 +1,9 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{2375C788-A767-4F16-8A65-84825016E30B}</ProjectGuid>
-        <MainSource>TurboUpdate.dpk</MainSource>
+        <ProjectGuid>{10810C64-9120-489E-819A-4EE86CEFBB3C}</ProjectGuid>
+        <MainSource>HDMessageDlg.dpk</MainSource>
         <ProjectVersion>19.5</ProjectVersion>
-        <FrameworkType>None</FrameworkType>
+        <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -46,9 +46,8 @@
         <GenPackage>true</GenPackage>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <DCC_CBuilderOutput>All</DCC_CBuilderOutput>
+        <SanitizedProjectName>HDMessageDlg</SanitizedProjectName>
         <RuntimeOnlyPackage>true</RuntimeOnlyPackage>
-        <SanitizedProjectName>TurboUpdate</SanitizedProjectName>
-        <DCC_UnitSearchPath>modules\.dcp;modules\.dcu;modules;modules\hdmessagedlg\src\FMX;modules\hdmessagedlg\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
@@ -83,11 +82,14 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
-        <DCCReference Include="TurboUpdateModel.dcp"/>
-        <DCCReference Include="TurboUpdateFMX.dcp"/>
-        <DCCReference Include="TurboUpdateVCL.dcp"/>
-        <DCCReference Include="Source\TurboUpdate.pas"/>
-        <DCCReference Include="Source\TurboUpdate.Interfaces.pas"/>
+        <DCCReference Include="fmx.dcp"/>
+        <DCCReference Include="dbrtl.dcp"/>
+        <DCCReference Include="src\HDMessageDlg.Interfaces.pas"/>
+        <DCCReference Include="src\FMX\HDMessageDlg.View.FMX.pas">
+            <Form>HDMessageDlgFMX</Form>
+        </DCCReference>
+        <DCCReference Include="src\HDMessageDlg.Consts.pas"/>
+        <DCCReference Include="src\HDMessageDlg.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -105,13 +107,13 @@
         <Borland.ProjectType>Package</Borland.ProjectType>
         <BorlandProject>
             <Delphi.Personality>
+                <Source>
+                    <Source Name="MainSource">HDMessageDlg.dpk</Source>
+                </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k280.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp280.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
-                <Source>
-                    <Source Name="MainSource">TurboUpdate.dpk</Source>
-                </Source>
             </Delphi.Personality>
             <Deployment Version="4">
                 <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule">
@@ -129,9 +131,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\22.0\Bpl\TurboUpdate.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\22.0\Bpl\HDMessageDlg.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>TurboUpdate.bpl</RemoteName>
+                        <RemoteName>HDMessageDlg.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
