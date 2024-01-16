@@ -21,10 +21,10 @@ uses
   System.SysUtils,
 
   TurboUpdate.FormUpdate,
-  TurboUpdate.Interfaces,
+  TurboUpdate.Model.Interfaces,
   TurboUpdate.Model,
-  TurboUpdate.Types,
-  TurboUpdate.Update.Thread,
+  TurboUpdate.Model.Types,
+  TurboUpdate.Model.Update.Thread,
 
   Vcl.Dialogs,
   Vcl.Forms;

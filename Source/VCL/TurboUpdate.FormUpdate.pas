@@ -29,9 +29,10 @@ uses
   System.SysUtils,
   System.Variants,
 
-  TurboUpdate.Consts,
-  TurboUpdate.Interfaces,
-  TurboUpdate.Types,
+  TurboUpdate.Model.Consts,
+  TurboUpdate.Model.Interfaces,
+  TurboUpdate.Model.Language.Interfaces,
+  TurboUpdate.Model.Types,
 
   Vcl.Controls,
   Vcl.Dialogs,

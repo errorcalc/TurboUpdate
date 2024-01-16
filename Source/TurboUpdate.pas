@@ -26,14 +26,15 @@ uses
 
   System.Classes,
   System.SysUtils,
-
-  TurboUpdate.Check,
-  TurboUpdate.Consts,
-  TurboUpdate.FMX.Utils,
   TurboUpdate.Interfaces,
-  TurboUpdate.Types,
-  TurboUpdate.Utils,
-  TurboUpdate.VCL.Utils;
+
+  TurboUpdate.Model.Check,
+  TurboUpdate.Model.Consts,
+  TurboUpdate.FMX.Utils,
+  TurboUpdate.VCL.Utils,
+  TurboUpdate.Model.Language.Interfaces,
+  TurboUpdate.Model.Types,
+  TurboUpdate.Model.Utils;
 
 type
   TTurboUpdate = class(TInterfacedObject, iTurboUpdate)

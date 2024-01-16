@@ -22,9 +22,10 @@ Adicione as seguintes pastas ao seu projeto, em *Project > Options > Delphi Comp
 ../TurboUpdate/Source
 ../TurboUpdate/Source/VCL
 ../TurboUpdate/Source/FMX
+../TurboUpdate/Source/Language
 ```
 
-#### Samples
+#### Exemplos
   * Veja alguns exemplos: [samples](https://github.com/errorcalc/TurboUpdate/tree/master/Samples)
 
 ## Como usar
@@ -48,7 +49,7 @@ begin
     .AppName('nome da chave do aquivo .ini')
     .Description('Descrição que vai aparecer na tela de atualização')
     .RootPath('Opcional: Nome da pasta onde deseja descompactar o executável atualizado')
-    .PngRes('Opcional: Serve p/ trocar a imagem default da tela de atualização. Adicionar em *Project > Resources and Images*, e passar o nome do recurso. Ex: image.png')
+    .PngRes('Opcional: Serve p/ trocar a imagem default da tela de atualização. Adicionar em Project > Resources and Images, e passar o nome do recurso. Ex: image.png')
     .Version(TFileVersion.CreateForFile(verão do app. EX: pode ser o executável ou número da versão, '2.0.0.0'))
     .ExecUpdateApp('App a ser executado para atualizar o sistema. Default: Update.exe')
     .KillTaskApp('App a ser fechado antes de continuar com a atualização. Ex: Update.exe')

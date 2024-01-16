@@ -21,7 +21,7 @@ unit TurboUpdate.VCL.Utils;
 interface
 
 uses
-  TurboUpdate.Types,
+  TurboUpdate.Model.Types,
   TurboUpdate.Update;
 
 procedure VCLUpdate(const UpdateInfo: TUpdateInfo);

@@ -12,12 +12,12 @@
 { You can order developing vcl/fmx components, please submit requests to mail. }
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
-unit TurboUpdate.Check;
+unit TurboUpdate.Model.Check;
 
 interface
 
 uses
-  TurboUpdate.Types;
+  TurboUpdate.Model.Types;
 
 type
   TUpdateCheckResultProc = reference to procedure(UpdateAviable: Boolean; Version: TFileVersion);
@@ -32,7 +32,7 @@ procedure CheckUpdate(Urls: TStringArray; AppName: string;
 implementation
 
 uses
-  System.Classes, TurboUpdate.Internet;
+  System.Classes, TurboUpdate.Model.Internet;
 
 var
   IsChecking: Boolean = False;

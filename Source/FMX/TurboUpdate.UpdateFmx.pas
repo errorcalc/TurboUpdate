@@ -22,10 +22,10 @@ uses
   System.Classes,
   System.SysUtils,
 
-  TurboUpdate.Interfaces,
+  TurboUpdate.Model.Interfaces,
   TurboUpdate.Model,
-  TurboUpdate.Types,
-  TurboUpdate.Update.Thread;
+  TurboUpdate.Model.Types,
+  TurboUpdate.Model.Update.Thread;
 
 type
   TFmxUpdateThread = class(TUpdateThread)

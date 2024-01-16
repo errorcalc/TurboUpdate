@@ -24,11 +24,12 @@ uses
   System.SysUtils,
   System.Zip,
 
-  TurboUpdate.Consts,
-  TurboUpdate.Internet,
-  TurboUpdate.Interfaces,
-  TurboUpdate.Types,
-  TurboUpdate.Utils;
+  TurboUpdate.Model.Consts,
+  TurboUpdate.Model.Internet,
+  TurboUpdate.Model.Interfaces,
+  TurboUpdate.Model.Language.Interfaces,
+  TurboUpdate.Model.Types,
+  TurboUpdate.Model.Utils;
 
 type
   TUpdater = class(TInterfacedPersistent, IUpdateModel)
@@ -71,7 +72,7 @@ type
 implementation
 
 uses
-  TurboUpdate.Update.Thread; // added by renato trevisan
+  TurboUpdate.Model.Update.Thread; // added by renato trevisan
 
 {$HINTS OFF}
 function FileToOld(FileName: string): Boolean;
@@ -165,7 +166,7 @@ begin
       View.State := TUpdateState.Done;
       View.Status := FConsts.Consts.DoneStatus;
       View.ShowMessage(FConsts.Consts.DoneMessage);
-      TurboUpdate.Utils.LaunchUpdateApp(ExeNames[0], True); // open new update by application or app in inno setup //add by Francisco Aurino in 17/12/2022 16:25:43
+      TurboUpdate.Model.Utils.LaunchUpdateApp(ExeNames[0], True); // open new update by application or app in inno setup //add by Francisco Aurino in 17/12/2022 16:25:43
     end);
 end;
 

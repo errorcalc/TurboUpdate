@@ -16,27 +16,44 @@
 {Adicionado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
 {added by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate      }
 {******************************************************************************}
-unit TurboUpdate.FMX.Utils;
+unit TurboUpdate.Model.Interfaces;
 
 interface
 
 uses
-  TurboUpdate.Model.Types,
-  TurboUpdate.UpdateFmx;
+  System.SysUtils,
+  TurboUpdate.Model.Check,
+  TurboUpdate.Model.Types;
 
-procedure FMXUpdate(const UpdateInfo: TUpdateInfo);
-procedure FMXUpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
+type
+  IUpdateModel = interface
+    ['{CEAD1A55-AF8B-4003-B1C2-84D7371D2CE1}']
+    procedure Cancel;
+  end;
+
+  IUpdateView = interface
+    ['{D7D57022-217A-4D79-944F-6D3112D674D9}']
+    procedure SetVersion(const Value: string);
+    procedure SetDescription(const Value: string);
+    procedure SetStatus(const Value: string);
+    procedure SetPngRes(const Value: string);
+    procedure SetModel(Model: IUpdateModel);
+    procedure SetUpdateState(Value: TUpdateState);
+    // routliness
+    procedure ShowMessage(Message: string);
+    function ShowErrorMessage(Message: string): Boolean;
+    procedure Progress(Progress, Length: Integer);
+    procedure Close;
+    procedure Show;
+    // properties
+    property Version: string write SetVersion;
+    property Status: string write SetStatus;
+    property Description: string write SetDescription;
+    property PngRes: string write SetPngRes;
+    property Model: IUpdateModel write SetModel;
+    property State: TUpdateState write SetUpdateState;
+  end;
 
 implementation
-
-procedure FMXUpdate(const UpdateInfo: TUpdateInfo);
-begin
-  TFmxUpdateThread.Create(UpdateInfo).Update;
-end;
-
-procedure FMXUpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
-begin
-  TFmxUpdateThread.Create(UpdateInfo).UpdateFromFile(FileName);
-end;
 
 end.

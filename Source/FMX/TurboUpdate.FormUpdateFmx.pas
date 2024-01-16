@@ -36,9 +36,10 @@ uses
   System.UITypes,
   System.Variants,
 
-  TurboUpdate.Consts,
-  TurboUpdate.Interfaces,
-  TurboUpdate.Types;
+  TurboUpdate.Model.Consts,
+  TurboUpdate.Model.Interfaces,
+  TurboUpdate.Model.Language.Interfaces,
+  TurboUpdate.Model.Types;
 
 type
   TFormUpdateFmx = class(TForm, IUpdateView)

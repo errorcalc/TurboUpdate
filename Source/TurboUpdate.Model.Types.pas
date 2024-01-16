@@ -16,7 +16,7 @@
 {Modidicado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
 {Modified by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate   }
 {******************************************************************************}
-unit TurboUpdate.Types;
+unit TurboUpdate.Model.Types;
 {$SCOPEDENUMS ON}
 
 interface
@@ -26,7 +26,6 @@ uses
   System.SysUtils;
 
 type
-
   TUpdateState = (Waiting, Downloading, Unpacking, Done);
   TStringArray = array of string;
 
@@ -63,19 +62,18 @@ type
   end;
 
 {$IFDEF MSWINDOWS}
-
 function GetFileVersion(FileName: string; out Version: TFileVersion): Boolean;
 {$ENDIF}
 
 implementation
 
 {$IFDEF MSWINDOWS}
-
 uses
   WinApi.Windows;
 {$ENDIF}
-{$IFDEF MSWINDOWS}
 
+
+{$IFDEF MSWINDOWS}
 function GetFileVersion(FileName: string; out Version: TFileVersion): Boolean;
 var
   InfoSize, Wnd: DWORD;
@@ -129,8 +127,8 @@ begin
     on EConvertError do;
   end;
 end;
-{$IFDEF MSWINDOWS}
 
+{$IFDEF MSWINDOWS}
 constructor TFileVersion.CreateForFile(FileName: TFileName);
 begin
   Self := Default (TFileVersion);

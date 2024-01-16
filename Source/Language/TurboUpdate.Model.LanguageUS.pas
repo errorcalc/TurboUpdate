@@ -16,7 +16,7 @@
 {Adicionado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
 {added by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate      }
 {******************************************************************************}
-unit TurboUpdate.LanguageUS;
+unit TurboUpdate.Model.LanguageUS;
 
 interface
 
@@ -25,7 +25,7 @@ uses
   System.IniFiles,
   System.SysUtils,
 
-  TurboUpdate.Interfaces;
+  TurboUpdate.Model.Language.Interfaces;
 
 type
   TMessageConstsUS = class(TInterfacedObject, IMessageConsts)

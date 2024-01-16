@@ -12,7 +12,11 @@
 { You can order developing vcl/fmx components, please submit requests to mail. }
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
-unit TurboUpdate.Utils;
+{                                                                              }
+{Modidicado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
+{Modified by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate   }
+{******************************************************************************}
+unit TurboUpdate.Model.Utils;
 
 interface
 
@@ -25,7 +29,7 @@ uses
   Winapi.TlHelp32;
 
   procedure LaunchUpdateApp(FileName: TFileName = 'Update.exe'; RunAsAdministrator: Boolean = True);
-  function Killtask(ExeFileName: TFileName): Integer;
+  function Killtask(ExeFileName: TFileName): Integer; // Add by renato trevisan 02-01-2024
   function NormalizeFileName(FileName: string): string;
 
 implementation

@@ -16,7 +16,7 @@
 {Adicionado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
 {added by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate      }
 {******************************************************************************}
-unit TurboUpdate.Update.Thread;
+unit TurboUpdate.Model.Update.Thread;
 
 interface
 
@@ -24,9 +24,9 @@ uses
   System.Classes,
   System.SysUtils,
 
-  TurboUpdate.Interfaces,
+  TurboUpdate.Model.Interfaces,
   TurboUpdate.Model,
-  TurboUpdate.Types;
+  TurboUpdate.Model.Types;
 
 type
   TUpdateThread = class(TThread)

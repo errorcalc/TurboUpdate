@@ -13,70 +13,38 @@
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
 {                                                                              }
-{Modidicado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
-{Modified by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate   }
+{Adicionado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
+{added by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate      }
 {******************************************************************************}
-unit TurboUpdate.Consts;
-{$I \Language.inc}
+unit TurboUpdate.Model.Language.Interfaces;
 
 interface
 
-uses
-  System.Classes,
-  System.SysUtils,
-
-  TurboUpdate.LanguagePTbr,
-  TurboUpdate.LanguageUS,
-
-  TurboUpdate.Interfaces;
-
 type
-  TFactoryConsts = class (TInterfacedObject, IFactoryConsts)
-    private
-    {$IFDEF EN-Us}
-      FLanguageUS : IMessageConsts;
-    {$ENDIF}
-    {$IFDEF PT-Br}
-      FLanguadePTbr : IMessageConsts;
-    {$ENDIF}
-    public
-      constructor Create;
-      destructor Destroy; override;
-      class function New : IFactoryConsts;
-      function Consts : IMessageConsts;
+  IMessageConsts = interface // Adicionado por Renato Trevisan 02/01/24
+    ['{CCEA3692-C90A-48DA-801E-0543F49C6CBC}']
+    function WaitingStatus: string;
+    function DownloadingStatus: string;
+    function RenamingFilesStatus: string;
+    function UnpackingStatus: string;
+    function DoneStatus: string;
+    function ConnectionError: string;
+    function DownloadError: string;
+    function CorruptedFilesError: string;
+    function DoneMessage: string;
+    function DoneMessageRestart: string;
+    function Version: string;
+    function MsgTitle: string;
+    function MsgQuestion: string;
+    function MsgBodyLastVersion: string;
+    function MsgBodyUpdateVersion : string;
+  end;
+
+  IFactoryConsts = interface // Adicionado por Renato Trevisan 02/01/24
+    ['{3DC0100B-59AB-4D25-B9F4-BA1E3945E664}']
+    function Consts: IMessageConsts;
   end;
 
 implementation
-
-{ TFactoryConsts }
-
-function TFactoryConsts.Consts: IMessageConsts;
-begin
-{$IFDEF EN-Us}
-  FLanguageUS := TMessageConstsUS.New;
-  Result := FLanguageUS;
-{$ENDIF}
-
-{$IFDEF PT-Br}
-  FLanguadePTbr := TMessageConstsPTbr.New;
-  Result := FLanguadePTbr;
-{$ENDIF}
-end;
-
-constructor TFactoryConsts.Create;
-begin
-
-end;
-
-destructor TFactoryConsts.Destroy;
-begin
-
-  inherited;
-end;
-
-class function TFactoryConsts.New: IFactoryConsts;
-begin
-  Result := Self.Create;
-end;
 
 end.

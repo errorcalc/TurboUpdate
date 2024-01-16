@@ -13,30 +13,70 @@
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
 {                                                                              }
-{Adicionado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
-{added by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate      }
+{Modidicado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
+{Modified by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate   }
 {******************************************************************************}
-unit TurboUpdate.FMX.Utils;
+unit TurboUpdate.Model.Consts;
+{$I \Language.inc}
 
 interface
 
 uses
-  TurboUpdate.Model.Types,
-  TurboUpdate.UpdateFmx;
+  System.Classes,
+  System.SysUtils,
 
-procedure FMXUpdate(const UpdateInfo: TUpdateInfo);
-procedure FMXUpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
+  TurboUpdate.Model.LanguagePTbr,
+  TurboUpdate.Model.LanguageUS,
+
+  TurboUpdate.Model.Language.Interfaces;
+
+type
+  TFactoryConsts = class (TInterfacedObject, IFactoryConsts)
+    private
+    {$IFDEF EN-Us}
+      FLanguageUS : IMessageConsts;
+    {$ENDIF}
+    {$IFDEF PT-Br}
+      FLanguadePTbr : IMessageConsts;
+    {$ENDIF}
+    public
+      constructor Create;
+      destructor Destroy; override;
+      class function New : IFactoryConsts;
+      function Consts : IMessageConsts;
+  end;
 
 implementation
 
-procedure FMXUpdate(const UpdateInfo: TUpdateInfo);
+{ TFactoryConsts }
+
+function TFactoryConsts.Consts: IMessageConsts;
 begin
-  TFmxUpdateThread.Create(UpdateInfo).Update;
+{$IFDEF EN-Us}
+  FLanguageUS := TMessageConstsUS.New;
+  Result := FLanguageUS;
+{$ENDIF}
+
+{$IFDEF PT-Br}
+  FLanguadePTbr := TMessageConstsPTbr.New;
+  Result := FLanguadePTbr;
+{$ENDIF}
 end;
 
-procedure FMXUpdateFromFile(const UpdateInfo: TUpdateInfo; FileName: string);
+constructor TFactoryConsts.Create;
 begin
-  TFmxUpdateThread.Create(UpdateInfo).UpdateFromFile(FileName);
+
+end;
+
+destructor TFactoryConsts.Destroy;
+begin
+
+  inherited;
+end;
+
+class function TFactoryConsts.New: IFactoryConsts;
+begin
+  Result := Self.Create;
 end;
 
 end.

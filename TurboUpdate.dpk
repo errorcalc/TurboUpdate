@@ -1,4 +1,5 @@
 package TurboUpdate;
+
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
@@ -12,8 +13,8 @@ package TurboUpdate;
 {$LONGSTRINGS ON}
 {$OPENSTRINGS ON}
 {$OPTIMIZATION OFF}
-{$OVERFLOWCHECKS OFF}
-{$RANGECHECKS OFF}
+{$OVERFLOWCHECKS ON}
+{$RANGECHECKS ON}
 {$REFERENCEINFO ON}
 {$SAFEDIVIDE OFF}
 {$STACKFRAMES ON}
@@ -29,32 +30,12 @@ package TurboUpdate;
 
 requires
   rtl,
-  dbrtl,
-  vclimg,
-  vcl,
-  vclwinx,
-  fmx,
-  EsVclComponents,
-  EsVclCore,
-  HDMessageDlg;
+  TurboUpdateModel,
+  TurboUpdateFMX,
+  TurboUpdateVCL;
 
 contains
-  TurboUpdate.Consts in 'Source\TurboUpdate.Consts.pas',
-  TurboUpdate.Internet in 'Source\TurboUpdate.Internet.pas',
-  TurboUpdate.Model in 'Source\TurboUpdate.Model.pas',
-  TurboUpdate.Types in 'Source\TurboUpdate.Types.pas',
-  TurboUpdate.Check in 'Source\TurboUpdate.Check.pas',
-  TurboUpdate.Utils in 'Source\TurboUpdate.Utils.pas',
-  TurboUpdate.LanguagePTbr in 'Source\TurboUpdate.LanguagePTbr.pas',
-  TurboUpdate.LanguageUS in 'Source\TurboUpdate.LanguageUS.pas',
-  TurboUpdate.Update.Thread in 'Source\TurboUpdate.Update.Thread.pas',
-  TurboUpdate.Interfaces in 'Source\TurboUpdate.Interfaces.pas',
   TurboUpdate in 'Source\TurboUpdate.pas',
-  TurboUpdate.FormUpdate in 'Source\VCL\TurboUpdate.FormUpdate.pas' {FormUpdate},
-  TurboUpdate.Update in 'Source\VCL\TurboUpdate.Update.pas',
-  TurboUpdate.VCL.Utils in 'Source\VCL\TurboUpdate.VCL.Utils.pas',
-  TurboUpdate.FMX.Utils in 'Source\FMX\TurboUpdate.FMX.Utils.pas',
-  TurboUpdate.FormUpdateFmx in 'Source\FMX\TurboUpdate.FormUpdateFmx.pas' {FormUpdateFmx},
-  TurboUpdate.UpdateFmx in 'Source\FMX\TurboUpdate.UpdateFmx.pas';
+  TurboUpdate.Interfaces in 'Source\TurboUpdate.Interfaces.pas';
 
 end.
